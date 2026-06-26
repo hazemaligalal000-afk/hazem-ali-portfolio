@@ -1,0 +1,39 @@
+🚀 Deploying Hazem Ali Galal Portfolio to 91.108.113.135...
+[1/6] Preparing production files...
+   ✅ Bundle created (864K)
+[2/6] Uploading to server...
+[3/6] Setting up server...
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-90-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Fri Feb 27 21:19:49 UTC 2026
+
+  System load:  0.0                Processes:             125
+  Usage of /:   16.8% of 47.39GB   Users logged in:       0
+  Memory usage: 33%                IPv4 address for eth0: 91.108.113.135
+  Swap usage:   0%                 IPv6 address for eth0: 2a02:4780:28:165f::1
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+39 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+6 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+1 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+*** System restart required ***
+   Node.js: v20.19.6
+   npm: 10.8.2

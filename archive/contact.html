@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>اتصل بي | Hazem Ali Galal</title>
+	<meta name="description" content="تواصل مع Hazem Ali Galal واحجز موعدك لمناقشة مشروعك">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css?v=3">
+	<style>
+		/* Critical mobile responsive overrides */
+		@media (max-width: 991px) {
+			.info-grid {
+				grid-template-columns: repeat(2, 1fr) !important;
+			}
+
+			.contact-inner {
+				max-width: 100% !important;
+				grid-template-columns: 1fr !important;
+				gap: 30px !important;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.container {
+				padding: 0 24px !important;
+			}
+
+			.info-grid {
+				display: flex !important;
+				flex-direction: column !important;
+				gap: 20px !important;
+			}
+
+			.info-box {
+				padding: 32px 24px !important;
+			}
+
+			.contact-section {
+				padding: 90px 0 48px !important;
+			}
+
+
+
+			.contact-inner h2 {
+				font-size: 1.5rem !important;
+			}
+
+			.contact-inner p {
+				font-size: 0.9rem !important;
+				margin-bottom: 24px !important;
+			}
+
+			.contact-method {
+				padding: 14px 16px !important;
+				font-size: 0.85rem !important;
+			}
+
+			.btn-large,
+			.btn.btn-large {
+				width: 100% !important;
+				justify-content: center !important;
+			}
+
+			.cta-band {
+				padding: 48px 16px !important;
+			}
+
+			.cta-band h2 {
+				font-size: 1.3rem !important;
+			}
+
+			.cta-band p {
+				font-size: 0.9rem !important;
+			}
+
+			.footer-grid {
+				grid-template-columns: 1fr !important;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.container {
+				padding: 0 20px !important;
+			}
+
+			.info-box {
+				padding: 28px 20px !important;
+			}
+
+			.info-box h3 {
+				font-size: 1.05rem !important;
+			}
+
+			.info-box p {
+				font-size: 0.85rem !important;
+			}
+
+			.contact-inner h2 {
+				font-size: 1.3rem !important;
+			}
+
+			.contact-method {
+				padding: 12px 14px !important;
+				font-size: 0.82rem !important;
+			}
+
+			.page-hero h1 {
+				font-size: 1.5rem !important;
+			}
+		}
+	</style>
+
+<body>
+
+	<div class="nav-overlay" id="nav-overlay"></div>
+
+	<nav class="topbar" id="topbar">
+		<div class="container nav-inner">
+			<a href="index.html" class="nav-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
+			<ul class="nav-menu" id="nav-menu">
+				<li><a href="index.html">الرئيسية</a></li>
+				<li><a href="about.html">من أنا</a></li>
+				<li><a href="case-studies.html">قصص النجاح</a></li>
+				<li><a href="contact.html" class="active">اتصل بي</a></li>
+			</ul>
+			<div style="display:flex;align-items:center;gap:16px;">
+				<a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta">احجز موعد
+					للتواصل</a>
+				<button class="mobile-btn" id="mobile-btn" aria-label="القائمة">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="3" y1="6" x2="21" y2="6" />
+						<line x1="3" y1="12" x2="21" y2="12" />
+						<line x1="3" y1="18" x2="21" y2="18" />
+					</svg>
+				</button>
+			</div>
+		</div>
+	</nav>
+
+	<!-- ===== CONTACT SECTION ===== -->
+	<section class="contact-section">
+		<div class="container">
+			<div class="contact-inner"
+				style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: right;">
+
+				<!-- Contact Info Side -->
+				<div>
+					<p style="color:var(--primary);font-weight:800;margin-bottom:8px;">تواصل معي</p>
+					<h2 class="reveal">دعنا نتحدث</h2>
+					<p class="reveal"
+						style="font-size:1.1rem; line-height:1.6; color:var(--text-gray); margin-bottom:30px;">
+						أنا هنا لمساعدتك. احجز موعدًا للتواصل ومناقشة كيف يمكنني مضاعفة أرباحك، أو اترك لي رسالة وسأقوم
+						بالرد عليك في أقرب وقت.
+					</p>
+
+					<div class="contact-methods reveal" style="display:flex; flex-direction:column; gap:16px;">
+						<a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="contact-method"
+							style="justify-content:flex-start;">
+							<svg viewBox="0 0 24 24" stroke-width="2" width="24" height="24">
+								<rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+								<line x1="16" y1="2" x2="16" y2="6" />
+								<line x1="8" y1="2" x2="8" y2="6" />
+								<line x1="3" y1="10" x2="21" y2="10" />
+							</svg>
+							<span>احجز موعد عبر Calendly</span>
+						</a>
+						<a href="mailto:hazemaligalal999@gmail.com" class="contact-method"
+							style="justify-content:flex-start;">
+							<svg viewBox="0 0 24 24" stroke-width="2" width="24" height="24">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+								<polyline points="22,6 12,13 2,6" />
+							</svg>
+							<span>hazemaligalal999@gmail.com</span>
+						</a>
+						<a href="https://wa.me/+201017173228" class="contact-method"
+							style="justify-content:flex-start;">
+							<svg viewBox="0 0 24 24" stroke-width="2" fill="none" width="24" height="24">
+								<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+							</svg>
+							<span>تواصل عبر WhatsApp</span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Contact Form Side -->
+				<div style="background:var(--bg); padding:30px; border-radius:12px; border:1px solid #eee;">
+					<h3 style="margin-bottom:20px; font-size:1.3rem;">أرسل مسج مباشر</h3>
+					<form id="contactForm" style="display:flex; flex-direction:column; gap:16px;">
+						<div style="display:flex; flex-direction:column; gap:6px;">
+							<label for="fullName" style="font-weight:600; font-size:0.9rem;">الاسم الكامل <span
+									style="color:var(--primary)">*</span></label>
+							<input type="text" id="fullName" required
+								style="padding:12px; border:1px solid #ddd; border-radius:8px; width:100%;">
+						</div>
+						<div style="display:flex; flex-direction:column; gap:6px;">
+							<label for="email" style="font-weight:600; font-size:0.9rem;">البريد الإلكتروني <span
+									style="color:var(--primary)">*</span></label>
+							<input type="email" id="email" required
+								style="padding:12px; border:1px solid #ddd; border-radius:8px; width:100%;">
+						</div>
+						<div style="display:flex; flex-direction:column; gap:6px;">
+							<label for="phone" style="font-weight:600; font-size:0.9rem;">رقم الجوال (اختياري)</label>
+							<input type="text" id="phone"
+								style="padding:12px; border:1px solid #ddd; border-radius:8px; width:100%;">
+						</div>
+						<div style="display:flex; flex-direction:column; gap:6px;">
+							<label for="subject" style="font-weight:600; font-size:0.9rem;">الموضوع</label>
+							<input type="text" id="subject" required
+								style="padding:12px; border:1px solid #ddd; border-radius:8px; width:100%;">
+						</div>
+						<div style="display:flex; flex-direction:column; gap:6px;">
+							<label for="message" style="font-weight:600; font-size:0.9rem;">محتوى الرسالة <span
+									style="color:var(--primary)">*</span></label>
+							<textarea id="message" required
+								style="padding:12px; border:1px solid #ddd; border-radius:8px; width:100%; min-height:120px; resize:vertical;"></textarea>
+						</div>
+						<button type="submit" id="submitBtn" class="btn btn-primary"
+							style="margin-top:10px; width:100%; justify-content:center;">إرسال الرسالة</button>
+						<div id="formMsg"
+							style="margin-top:10px; font-size:0.9rem; font-weight:600; text-align:center; display:none;">
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const contactForm = document.getElementById('contactForm');
+			if (contactForm) {
+				contactForm.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					const btn = document.getElementById('submitBtn');
+					const msgDiv = document.getElementById('formMsg');
+
+					const originalText = btn.innerHTML;
+					btn.innerHTML = 'جاري الإرسال...';
+					btn.disabled = true;
+					msgDiv.style.display = 'none';
+
+					try {
+						const res = await fetch('/api/contact', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({
+								fullName: document.getElementById('fullName').value,
+								email: document.getElementById('email').value,
+								phone: document.getElementById('phone').value,
+								subject: document.getElementById('subject').value,
+								message: document.getElementById('message').value
+							})
+						});
+
+						const data = await res.json();
+						msgDiv.style.display = 'block';
+
+						if (res.ok) {
+							msgDiv.style.color = 'green';
+							msgDiv.innerText = data.message || 'تم إرسال رسالتك بنجاح!';
+							contactForm.reset();
+						} else {
+							msgDiv.style.color = 'red';
+							if (data.errors) {
+								msgDiv.innerText = data.errors.map(err => err.msg).join(' - ');
+							} else {
+								msgDiv.innerText = data.error || 'حدث خطأ. حاول مرة أخرى.';
+							}
+						}
+					} catch (err) {
+						msgDiv.style.display = 'block';
+						msgDiv.style.color = 'red';
+						msgDiv.innerText = 'حدث خطأ في الاتصال بالسيرفر.';
+					} finally {
+						btn.innerHTML = originalText;
+						btn.disabled = false;
+					}
+				});
+			}
+		});
+	</script>
+
+	<!-- ===== INFO BOXES ===== -->
+	<section style="padding:60px 0;background:var(--bg);">
+		<div class="container">
+			<div class="info-grid reveal">
+				<div class="info-box">
+					<div class="info-box-icon">📅</div>
+					<h3>حجز موعد</h3>
+					<p>احجز موعدك الآن عبر Calendly لمناقشة مشروعك في 45 دقيقة مجانية.</p>
+				</div>
+				<div class="info-box">
+					<div class="info-box-icon">📊</div>
+					<h3>تحليل مجاني</h3>
+					<p>أقدم تحليلاً مجانياً للحملات الإعلانية الحالية لتحديد نقاط الضعف والفرص.</p>
+				</div>
+				<div class="info-box">
+					<div class="info-box-icon">🚀</div>
+					<h3>نتائج مضمونة</h3>
+					<p>تعاقدي يشترط الوصول إلى نتائج تحسن من أرباحك - ليس مجرد وعود.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== PINK CTA BAND ===== -->
+	<div class="cta-band">
+		<div class="container">
+			<h2>يمكنك التواصل معي عن طريق حجز موعد لمناقشة مشروعك</h2>
+			<p>هذا الاجتماع من أجل مناقشة الوضع الحالي الخاص بمشروعك ومناقشة فرص التعاون.</p>
+			<a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="btn btn-white">احجز موعد
+				للتواصل</a>
+		</div>
+	</div>
+
+	<!-- ===== FOOTER ===== -->
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-brand">
+					<a href="index.html" class="footer-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
+					<p>خبير أداء تسويقي متخصص بزيادة مبيعاتك وأرباحك من خلال الإعلانات وإستراتيجيات التسويق الرقمي.</p>
+				</div>
+				<div class="footer-col">
+					<h4>مجالات الخبرة</h4>
+					<ul>
+						<li>Perfumes (eCommerce)</li>
+						<li>Home Appliances (eCommerce)</li>
+						<li>Automotive</li>
+						<li>Furniture (eCommerce)</li>
+						<li>Fashion (eCommerce)</li>
+						<li>Real estate</li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>الخدمات</h4>
+					<ul class="footer-services-list">
+						<li><a href="service-form.html?service=media-buying">Media Buying</a></li>
+						<li><a href="service-form.html?service=digital-auditing">Digital Auditing</a></li>
+						<li><a href="service-form.html?service=consultation">Consultation</a></li>
+						<li><a href="service-form.html?service=landing-pages">Landing pages/Website</a></li>
+						<li><a href="service-form.html?service=ecommerce">E-commerce Platforms</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>تواصل معي</h4>
+					<div class="footer-contact-item">
+						<svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+							<polyline points="22,6 12,13 2,6" />
+						</svg>
+						<span>hazemaligalal999@gmail.com</span>
+					</div>
+					<div class="footer-contact-item">
+						<svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
+							<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+						</svg>
+						<a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
+							style="color:var(--primary);font-weight:700;">احجز موعد عبر Calendly</a>
+					</div>
+					<div class="footer-contact-item">
+						<svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
+							<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+						</svg>
+						<a href="https://wa.me/201017173228" target="_blank"
+							style="color:var(--primary);font-weight:700;">تواصل عبر WhatsApp</a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<span>&copy; 2026 Hazem Ali Galal. جميع الحقوق محفوظة.</span>
+			</div>
+		</div>
+	</footer>
+
+	<button id="scroll-top" aria-label="Back to top">
+		<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+			<polyline points="18 15 12 9 6 15" />
+		</svg>
+	</button>
+
+	<script src="tracking-system.js"></script>
+	<script src="script.js"></script>
+</body>
+
+</html>

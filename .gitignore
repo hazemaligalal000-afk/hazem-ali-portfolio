@@ -1,0 +1,36 @@
+# See .env for template
+.env
+
+# Database
+data/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Logs
+server/logs/*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Build artifacts
+*.tar.gz
+*.zip
+
+# Python files (legacy)
+*.pyc
+__pycache__/

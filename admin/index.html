@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Hazem Ali Galal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/admin/admin.css">
+    <!-- Quill WYSIWYG Editor -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="login-screen">
+            <div class="login-card">
+                <div class="login-logo">
+                    <div class="logo-circle">H</div>
+                    <h1>Admin Dashboard</h1>
+                    <p>Hazem Ali Galal • Performance Marketing</p>
+                </div>
+                <form id="login-form">
+                    <div class="form-field">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="admin@example.com" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-login" id="login-btn">
+                        <span>Sign In</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    <div id="login-error" class="login-error" style="display:none;"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard" style="display:none;">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo-circle-sm">H</div>
+                    <span class="sidebar-brand">Admin Panel</span>
+                    <button class="sidebar-close" id="sidebar-close">✕</button>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-page="overview">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                        </svg>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="leads">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                        <span>Leads</span>
+                        <span class="badge" id="leads-badge"></span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="contacts">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        <span>Messages</span>
+                        <span class="badge" id="contacts-badge"></span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="case-studies">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                        <span>Case Studies</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="blog">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <span>Blog</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="media">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <circle cx="8.5" cy="8.5" r="1.5" />
+                            <polyline points="21 15 16 10 5 21" />
+                        </svg>
+                        <span>Media Library</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="testimonials">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.8.9L21 3.5z" />
+                        </svg>
+                        <span>Testimonials</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="subscribers">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        <span>Subscribers</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="editor">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20h9" />
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                        <span>Direct Editor</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="logs">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                        <span>Audit Logs</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="users" id="nav-users">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M12 11c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6 6 2.69 6 6zM15 13a4 4 0 1 1 0-8c2.21 0 4 1.79 4 4 0 2.21-1.79 4-4 4zM24 21v-1a4 4 0 0 0-3-3.87M18 19.5v-.5a5.5 5.5 0 0 0-5.5-5.5h-5.5A5.5 5.5 0 0 0 1.5 19v.5" />
+                        </svg>
+                        <span>Admin Users</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="tracking">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <span>Tracking</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="analytics">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+
+                    <div class="nav-heading"
+                        style="padding: 12px 14px 4px; font-size: 0.65rem; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                        Future Modules</div>
+                    <a href="#" class="nav-item future-item" data-page="email-campaigns"><span
+                            class="nav-dot"></span><span>Email Campaigns</span></a>
+                    <a href="#" class="nav-item future-item" data-page="seo-metadata"><span
+                            class="nav-dot"></span><span>SEO Manager</span></a>
+                    <a href="#" class="nav-item future-item" data-page="faqs"><span class="nav-dot"></span><span>FAQ
+                            Manager</span></a>
+                    <a href="#" class="nav-item future-item" data-page="portfolio"><span
+                            class="nav-dot"></span><span>Portfolio / Gallery</span></a>
+                    <a href="#" class="nav-item future-item" data-page="jobs"><span class="nav-dot"></span><span>Careers
+                            & Jobs</span></a>
+                    <a href="#" class="nav-item future-item" data-page="job-applications"><span
+                            class="nav-dot"></span><span>Job Applications</span></a>
+                    <a href="#" class="nav-item future-item" data-page="partners"><span
+                            class="nav-dot"></span><span>Partners & Clients</span></a>
+                    <a href="#" class="nav-item future-item" data-page="pricing"><span
+                            class="nav-dot"></span><span>Pricing Plans</span></a>
+                    <a href="#" class="nav-item future-item" data-page="coupons"><span
+                            class="nav-dot"></span><span>Coupons & Promos</span></a>
+                    <a href="#" class="nav-item future-item" data-page="events"><span
+                            class="nav-dot"></span><span>Events / Webinars</span></a>
+                    <a href="#" class="nav-item future-item" data-page="event-registrations"><span
+                            class="nav-dot"></span><span>Event Attendees</span></a>
+                    <a href="#" class="nav-item future-item" data-page="backups"><span
+                            class="nav-dot"></span><span>System Backups</span></a>
+                    <a href="#" class="nav-item future-item" data-page="webhooks"><span
+                            class="nav-dot"></span><span>Webhooks</span></a>
+                    <a href="#" class="nav-item future-item" data-page="forms"><span class="nav-dot"></span><span>Custom
+                            Forms</span></a>
+                    <a href="#" class="nav-item future-item" data-page="invoices"><span
+                            class="nav-dot"></span><span>Invoices</span></a>
+                    <a href="#" class="nav-item future-item" data-page="expenses"><span
+                            class="nav-dot"></span><span>Expenses</span></a>
+                    <a href="#" class="nav-item future-item" data-page="appointments"><span
+                            class="nav-dot"></span><span>Appointments</span></a>
+                    <a href="#" class="nav-item future-item" data-page="support-tickets"><span
+                            class="nav-dot"></span><span>Support Tickets</span></a>
+                    <a href="#" class="nav-item future-item" data-page="ab-tests"><span class="nav-dot"></span><span>A/B
+                            Tests</span></a>
+                    <a href="#" class="nav-item future-item" data-page="affiliates"><span
+                            class="nav-dot"></span><span>Affiliates</span></a>
+                    <a href="#" class="nav-item future-item" data-page="reviews"><span
+                            class="nav-dot"></span><span>Reviews</span></a>
+                    <a href="#" class="nav-item future-item" data-page="subscriptions"><span
+                            class="nav-dot"></span><span>Subscriptions</span></a>
+                    <a href="#" class="nav-item future-item" data-page="courses"><span
+                            class="nav-dot"></span><span>Courses</span></a>
+                    <a href="#" class="nav-item future-item" data-page="digital-products"><span
+                            class="nav-dot"></span><span>Digital Products</span></a>
+                    <a href="#" class="nav-item future-item" data-page="orders"><span
+                            class="nav-dot"></span><span>Orders</span></a>
+                </nav>
+                <div class="sidebar-footer">
+                    <div class="user-info">
+                        <div class="user-avatar" id="user-avatar">H</div>
+                        <div>
+                            <div class="user-name" id="user-name">Admin</div>
+                            <div class="user-role" id="user-role">Super Admin</div>
+                        </div>
+                    </div>
+                    <button class="btn-logout" id="btn-logout">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
+                        Logout
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="topbar-admin">
+                    <div class="topbar-left">
+                        <button class="menu-toggle" id="menu-toggle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="3" y1="6" x2="21" y2="6" />
+                                <line x1="3" y1="12" x2="21" y2="12" />
+                                <line x1="3" y1="18" x2="21" y2="18" />
+                            </svg>
+                        </button>
+                        <h2 class="page-title" id="page-title">Overview</h2>
+                    </div>
+                    <div class="topbar-actions">
+                        <div class="notification-wrap">
+                            <button class="btn-icon" id="notif-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                                </svg>
+                                <span class="notif-badge" id="notif-badge" style="display:none;"></span>
+                            </button>
+                            <div class="notif-dropdown" id="notif-dropdown">
+                                <div class="notif-header">Notifications</div>
+                                <div class="notif-list" id="notif-list">
+                                    <div class="notif-empty">No new notifications</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/" target="_blank" class="btn-view-site">View Website →</a>
+                    </div>
+                </header>
+
+                <div class="content-area" id="content-area">
+                    <!-- Dynamic content loaded here -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/admin/admin.js"></script>
+</body>
+
+</html>
