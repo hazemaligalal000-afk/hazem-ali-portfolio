@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         /* WhatsApp Widget Styles */
         .wa-widget-container {
             position: fixed;
-            bottom: 30px;
+            bottom: 110px;
             right: 30px;
             z-index: 9999;
             font-family: 'Almarai', sans-serif;
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         /* Mobile adjustment */
         @media (max-width: 768px) {
             .wa-widget-container {
-                bottom: 20px;
+                bottom: 100px;
                 right: 20px;
             }
             .wa-chat-window {

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
         .tg-widget-container {
             position: fixed;
-            bottom: 110px;
+            bottom: 30px;
             right: 30px; /* Positioned on the right! */
             z-index: 9998;
             font-family: 'Almarai', sans-serif;
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         /* Mobile adjustment */
         @media (max-width: 768px) {
             .tg-widget-container {
-                bottom: 100px;
+                bottom: 20px;
                 right: 20px;
             }
             .tg-chat-window {
