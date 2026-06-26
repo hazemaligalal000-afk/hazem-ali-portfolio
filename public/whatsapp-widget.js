@@ -376,10 +376,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     waCloseBtn.addEventListener('click', closeChat);
-
-    setTimeout(() => {
-        if (!chatOpened) {
-            openChat();
-        }
-    }, 5000);
 });
