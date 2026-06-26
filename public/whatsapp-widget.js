@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .wa-widget-container {
             position: fixed;
             bottom: 30px;
-            left: 30px;
+            right: 30px;
             z-index: 9999;
             font-family: 'Almarai', sans-serif;
             direction: rtl;
@@ -61,14 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .wa-chat-window {
             position: absolute;
             bottom: 80px;
-            left: 0;
+            right: 0;
             width: 320px;
             background: #efeae2;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             overflow: hidden;
             display: none;
-            transform-origin: bottom left;
+            transform-origin: bottom right;
             transform: scale(0.9);
             opacity: 0;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -246,10 +246,10 @@ document.addEventListener('DOMContentLoaded', () => {
         @media (max-width: 768px) {
             .wa-widget-container {
                 bottom: 20px;
-                left: 20px;
+                right: 20px;
             }
             .wa-chat-window {
-                left: 0;
+                right: 0;
                 width: calc(100vw - 40px);
             }
         }
