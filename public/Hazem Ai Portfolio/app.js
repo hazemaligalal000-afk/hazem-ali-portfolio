@@ -542,9 +542,34 @@ document.addEventListener("DOMContentLoaded", () => {
             updateFormSteps();
         } else {
             // Form Submission logic
-            discoveryForm.style.display = "none";
-            document.querySelector(".form-progress").style.display = "none";
-            formSuccessMessage.style.display = "block";
+            nextStepBtn.textContent = "Sending...";
+            nextStepBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append("_subject", "New Discovery Form Submission (Portfolio)");
+            formData.append("Brand Name", document.getElementById('brandName').value);
+            formData.append("Website", document.getElementById('brandUrl').value);
+            formData.append("Monthly Revenue", document.getElementById('brandRev').value);
+            formData.append("Ad Spend", document.getElementById('brandSpend').value);
+            formData.append("Email", document.getElementById('brandEmail').value);
+            formData.append("WhatsApp", document.getElementById('brandWhatsApp').value);
+            formData.append("Bottleneck", document.getElementById('brandBottleneck').value);
+
+            fetch('https://formspree.io/f/mdalpolb', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(() => {
+                discoveryForm.style.display = "none";
+                document.querySelector(".form-progress").style.display = "none";
+                formSuccessMessage.style.display = "block";
+            }).catch(err => {
+                console.error(err);
+                alert("حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.");
+            }).finally(() => {
+                nextStepBtn.textContent = "SUBMIT DISCOVERY CALL REQUEST";
+                nextStepBtn.disabled = false;
+            });
         }
     });
 
@@ -631,8 +656,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!valid) return;
 
-        // Success state transition
-        hireMeForm.style.display = "none";
-        modalSuccessMessage.style.display = "block";
+        const btn = hireMeForm.querySelector("button[type='submit']");
+        const originalText = btn.textContent;
+        btn.textContent = "Sending...";
+        btn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("_subject", "New Hire Me Application (Portfolio)");
+        formData.append("Name", document.getElementById('hireName').value);
+        formData.append("Website", document.getElementById('hireWebsite').value);
+        formData.append("Monthly Budget", document.getElementById('hireBudget').value);
+        formData.append("Service", document.getElementById('hireService').value);
+        formData.append("Email", document.getElementById('hireEmail').value);
+        formData.append("WhatsApp", document.getElementById('hireWhatsApp').value);
+
+        fetch('https://formspree.io/f/mdalpolb', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(() => {
+            hireMeForm.style.display = "none";
+            modalSuccessMessage.style.display = "block";
+        }).catch(err => {
+            console.error(err);
+            alert("حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.");
+        }).finally(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        });
     });
 });

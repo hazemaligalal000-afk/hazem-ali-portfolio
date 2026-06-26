@@ -195,14 +195,16 @@ async function startServer() {
         // Seed initial data
         seedDatabase();
 
-        app.listen(PORT, HOST, () => {
-            logger.info(`🚀 Server running on http://${HOST}:${PORT}`);
-            logger.info(`📊 Admin dashboard: http://${HOST}:${PORT}/admin`);
-            logger.info(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-            console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-            console.log(`📊 Admin dashboard: http://localhost:${PORT}/admin`);
-            console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}\n`);
-        });
+        if (process.env.VERCEL !== '1') {
+            app.listen(PORT, HOST, () => {
+                logger.info(`🚀 Server running on http://${HOST}:${PORT}`);
+                logger.info(`📊 Admin dashboard: http://${HOST}:${PORT}/admin`);
+                logger.info(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+                console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+                console.log(`📊 Admin dashboard: http://localhost:${PORT}/admin`);
+                console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}\n`);
+            });
+        }
     } catch (error) {
         logger.error('Failed to start server:', error);
         console.error('Failed to start server:', error);
