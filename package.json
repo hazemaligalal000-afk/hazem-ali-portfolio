@@ -4,6 +4,7 @@
   "description": "Professional portfolio and lead management system for Hazem Ali Galal - Performance Marketing Expert",
   "main": "server/app.js",
   "scripts": {
+    "preinstall": "npm cache clean --force",
     "start": "NODE_ENV=production node server/app.js",
     "dev": "NODE_ENV=development node --watch server/app.js",
     "db:seed": "node server/utils/seed.js",
