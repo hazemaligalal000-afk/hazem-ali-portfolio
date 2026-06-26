@@ -19,7 +19,7 @@
   "author": "Hazem Ali Galal",
   "license": "ISC",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {
     "axios": "^1.13.6",
