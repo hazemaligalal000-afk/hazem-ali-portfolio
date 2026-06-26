@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             .tg-chat-window {
                 right: 0;
-                width: calc(100vw - 40px);
+                width: min(320px, calc(100vw - 40px));
             }
         }
     `;
