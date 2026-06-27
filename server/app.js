@@ -31,6 +31,7 @@ const apiRoutes = require('./routes/api');
 const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
 const trackingRoutes = require('./routes/tracking');
+const snapchatRoutes = require('./routes/snapchat');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -145,6 +146,9 @@ app.use('/api/admin', adminRoutes);
 
 // Tracking API routes
 app.use('/api/tracking', apiLimiter, trackingRoutes);
+
+// Snapchat Conversions API routes (dedicated)
+app.use('/api/snap', apiLimiter, snapchatRoutes);
 
 // ============================================
 // ANALYTICS MIDDLEWARE (Track page views)

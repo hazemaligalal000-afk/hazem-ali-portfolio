@@ -8,6 +8,7 @@ const { body, validationResult } = require('express-validator');
 const { v4: uuidv4 } = require('uuid');
 const { db } = require('../config/database');
 const logger = require('../utils/logger');
+const snapchatCAPI = require('../services/snapchat-capi');
 
 // ============================================
 // HEALTH CHECK
@@ -63,6 +64,26 @@ router.post('/leads',
             );
 
             logger.info(`New lead: ${fullName} (${email}) - ${serviceType} - ${qualificationStatus || 'pending'}`);
+
+            // ─── Snapchat CAPI: fire SIGN_UP server-side (non-blocking) ───
+            if (process.env.SNAPCHAT_PIXEL_ID && process.env.SNAPCHAT_CAPI_TOKEN) {
+                const forwarded = req.headers['x-forwarded-for'];
+                const ip = forwarded ? forwarded.split(',')[0].trim() : (req.ip || '');
+
+                snapchatCAPI.sendSnapchatEvent(snapchatCAPI.buildLeadEvent({
+                    eventId: `lead_${uuid}`,
+                    url: `${process.env.DOMAIN || ''}/service-form.html`,
+                    userData: {
+                        email: email || null,
+                        phone: phone || null,
+                        ipAddress: ip,
+                        userAgent: req.get('User-Agent') || '',
+                        scid: req.cookies?._scid || req.cookies?.sc_click_id || null
+                    },
+                    serviceType,
+                    budget
+                })).catch(err => logger.error('Snap CAPI auto-lead error:', err.message));
+            }
 
             res.status(201).json({
                 success: true,

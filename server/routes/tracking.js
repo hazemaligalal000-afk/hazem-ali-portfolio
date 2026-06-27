@@ -13,6 +13,7 @@ const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
 const logger = require('../utils/logger');
+const snapchatCAPI = require('../services/snapchat-capi');
 
 // ============================================
 // HELPERS
@@ -38,13 +39,22 @@ function generateEventId() {
  * Extract user data from request for server-side tracking
  */
 function extractUserData(req) {
+    // Resolve real IP behind proxy/load-balancer
+    const forwarded = req.headers['x-forwarded-for'];
+    const ip = forwarded ? forwarded.split(',')[0].trim() : (req.ip || req.connection?.remoteAddress || '');
+
     return {
-        ip: req.headers['x-forwarded-for'] || req.ip || req.connection?.remoteAddress,
+        ip,
         userAgent: req.get('User-Agent') || '',
         fbp: req.cookies?._fbp || null,
         fbc: req.cookies?._fbc || null,
         ttp: req.cookies?._ttp || null,
-        scid: req.cookies?._scid || null,
+        // Snap Click ID — set by Snap Pixel SDK via URL param ?ScCid=...
+        scid: req.cookies?._scid ||
+              req.cookies?.sc_click_id ||
+              req.query?.ScCid ||
+              req.body?.scid ||
+              null,
         referer: req.get('Referer') || '',
         origin: req.get('Origin') || ''
     };
@@ -170,15 +180,28 @@ router.post('/event', async (req, res) => {
             );
         }
 
-        // Snapchat Conversion API
+        // Snapchat Conversion API v3 (via dedicated service)
         if (process.env.SNAPCHAT_PIXEL_ID && process.env.SNAPCHAT_CAPI_TOKEN) {
             promises.push(
-                sendSnapchatEvent({
-                    eventName: mapToSnapchatEvent(eventName),
+                snapchatCAPI.sendSnapchatEvent({
+                    eventName,
                     eventId: serverEventId,
                     eventTime: serverEventTime,
                     eventSourceUrl,
-                    userData: enrichedUserData,
+                    userData: {
+                        // Pass RAW values — service hashes them internally
+                        email: userData.email || null,
+                        phone: userData.phone || null,
+                        firstName: userData.firstName || null,
+                        lastName: userData.lastName || null,
+                        city: userData.city || null,
+                        state: userData.state || null,
+                        country: userData.country || null,
+                        zipCode: userData.zipCode || null,
+                        ipAddress: reqData.ip,
+                        userAgent: reqData.userAgent,
+                        scid: userData.scid || reqData.scid || null
+                    },
                     customData
                 }).catch(err => logger.error('Snapchat CAPI error:', err.message))
             );
@@ -400,71 +423,10 @@ function mapToTikTokEvent(eventName) {
 // ============================================
 // SNAPCHAT CONVERSION API
 // ============================================
-
-async function sendSnapchatEvent({ eventName, eventId, eventTime, eventSourceUrl, userData, customData }) {
-    const payload = [{
-        pixel_id: process.env.SNAPCHAT_PIXEL_ID,
-        event_type: eventName,
-        event_conversion_type: 'WEB',
-        timestamp: eventTime * 1000, // milliseconds
-        event_tag: eventId,
-        page_url: eventSourceUrl,
-        hashed_email: userData.email || undefined,
-        hashed_phone_number: userData.phone || undefined,
-        hashed_first_name_sha: userData.firstName || undefined,
-        hashed_last_name_sha: userData.lastName || undefined,
-        hashed_city_sha: userData.city || undefined,
-        hashed_state_sha: userData.state || undefined,
-        hashed_zip: userData.zipCode || undefined,
-        ip_address: userData.ipAddress,
-        user_agent: userData.userAgent,
-        sc_click_id: userData.scid || undefined,
-        price: customData.value || undefined,
-        currency: customData.currency || 'USD',
-        transaction_id: customData.orderId || undefined,
-        item_category: customData.contentCategory || undefined,
-        number_items: customData.quantity || undefined,
-        description: customData.contentName || undefined
-    }];
-
-    const url = 'https://tr.snapchat.com/v2/conversion';
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.SNAPCHAT_CAPI_TOKEN}`
-        },
-        body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-        const errData = await response.text();
-        throw new Error(`Snapchat CAPI ${response.status}: ${errData}`);
-    }
-
-    logger.info(`Snapchat CAPI: ${eventName} sent successfully`);
-    return { success: true };
-}
-
-function mapToSnapchatEvent(eventName) {
-    const map = {
-        'PageView': 'PAGE_VIEW',
-        'ViewContent': 'VIEW_CONTENT',
-        'Lead': 'SIGN_UP',
-        'CompleteRegistration': 'SIGN_UP',
-        'Contact': 'SIGN_UP',
-        'AddToCart': 'ADD_CART',
-        'InitiateCheckout': 'START_CHECKOUT',
-        'AddPaymentInfo': 'ADD_BILLING',
-        'Purchase': 'PURCHASE',
-        'Search': 'SEARCH',
-        'Subscribe': 'SUBSCRIBE',
-        'WhatsAppClick': 'SIGN_UP',
-        'CalendlyClick': 'SIGN_UP'
-    };
-    return map[eventName] || eventName;
-}
+// NOTE: Snapchat CAPI is now handled by the dedicated service:
+//   server/services/snapchat-capi.js
+// which uses the v3 API endpoint with proper hashing,
+// retry logic, and signal quality scoring.
 
 // ============================================
 // GOOGLE ANALYTICS 4 MEASUREMENT PROTOCOL
