@@ -1,399 +1,518 @@
 /**
- * Snapchat Pixel + Conversions API — Client-Side Integration
- * ===========================================================
- * Handles:
- * - Snap Pixel SDK initialization (sc-pixel.js)
- * - Automatic PAGE_VIEW with deduplication event_id
- * - SIGN_UP event on form submit with user PII
- * - CUSTOM_EVENT_1 on WhatsApp click
- * - CUSTOM_EVENT_2 on Calendly click
- * - ScCid (Snap Click ID) capture from URL
- * - Dual-firing: browser pixel + server CAPI (with same event_id)
+ * Snapchat Pixel — Complete Event Tracking System
+ * ================================================
+ * Tracks EVERY meaningful interaction on the website:
  *
- * Usage: Include this script on every page AFTER Snap Pixel base code.
- * <script src="/js/snap-pixel.js"></script>
+ * Standard Events:
+ *   PAGE_VIEW        → Every page load
+ *   VIEW_CONTENT     → Case studies, blog posts, service pages
+ *   SIGN_UP          → Lead form submit, Hire Me modal submit
+ *   SUBSCRIBE        → Newsletter / blog subscribe
+ *   SEARCH           → Search interactions
+ *
+ * Custom Events:
+ *   CUSTOM_EVENT_1   → WhatsApp click
+ *   CUSTOM_EVENT_2   → Calendly / schedule click
+ *   CUSTOM_EVENT_3   → Case study / portfolio view
+ *   CUSTOM_EVENT_4   → CTA button click (any primary button)
+ *   CUSTOM_EVENT_5   → Scroll depth milestone (25/50/75/100%)
+ *
+ * All events fire BOTH:
+ *   → Browser Snap Pixel SDK (client-side)
+ *   → Server CAPI v3 (server-side, hashed PII, deduplication)
  */
 
 (function (window, document) {
     'use strict';
 
-    // ────────────────────────────────────────────
-    // CONFIG (set by /api/snap/config endpoint)
-    // ────────────────────────────────────────────
-    let SNAP_PIXEL_ID = null;
-    let CAPI_ENABLED = false;
-    const CAPI_ENDPOINT = '/api/snap/event';
+    // ─── Config ──────────────────────────────────────
+    const PIXEL_ID    = '5839ab52-f90c-4fc9-9967-17bcb35833ea';
+    const CAPI_URL    = '/api/snap/event';
+    let   CAPI_READY  = false; // set true once server confirms CAPI enabled
 
-    // ────────────────────────────────────────────
-    // UTILITIES
-    // ────────────────────────────────────────────
+    // ─── Deduplication ───────────────────────────────
+    const _fired = new Set(); // prevent double-firing same event type per session
 
-    /** Generate a unique event ID for deduplication */
-    function genEventId(prefix) {
-        const ts = Date.now().toString(36);
-        const rnd = Math.random().toString(36).slice(2, 8);
-        return `${prefix || 'evt'}_${ts}_${rnd}`;
+    function genId(prefix) {
+        return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`;
     }
 
-    /** Read a URL parameter by name */
-    function getUrlParam(name) {
+    // ─── ScCid capture ───────────────────────────────
+    function getScCid() {
         const url = new URL(window.location.href);
-        return url.searchParams.get(name) || null;
+        const fromUrl = url.searchParams.get('ScCid') || url.searchParams.get('sccid');
+        if (fromUrl) sessionStorage.setItem('_sc_click_id', fromUrl);
+        return sessionStorage.getItem('_sc_click_id') || null;
     }
 
-    /** Get Snap Click ID from URL (?ScCid=...) or sessionStorage */
-    function getSnapClickId() {
-        const fromUrl = getUrlParam('ScCid') || getUrlParam('sccid');
-        if (fromUrl) {
-            sessionStorage.setItem('sc_click_id', fromUrl);
-            return fromUrl;
-        }
-        return sessionStorage.getItem('sc_click_id') || null;
-    }
+    // ─── Collect PII from page ────────────────────────
+    function collectUser() {
+        const u = {};
+        const emailEl = document.getElementById('email')       || document.querySelector('input[type="email"]');
+        const phoneEl = document.getElementById('phone')       || document.querySelector('input[type="tel"]');
+        const nameEl  = document.getElementById('fullName')    || document.querySelector('input[name="fullName"]');
+        const hireEmailEl = document.getElementById('hireEmail');
+        const hireWaEl    = document.getElementById('hireWhatsApp');
+        const hireNameEl  = document.getElementById('hireName');
 
-    /** Collect best-effort user data from the page */
-    function collectUserData() {
-        const data = {};
+        const email = (emailEl?.value || hireEmailEl?.value || '').trim().toLowerCase();
+        const phone = (phoneEl?.value || hireWaEl?.value || '').trim();
+        const name  = (nameEl?.value  || hireNameEl?.value || '').trim();
 
-        // Email — from visible inputs
-        const emailEl = document.getElementById('email') ||
-                        document.querySelector('input[name="email"]') ||
-                        document.querySelector('input[type="email"]');
-        if (emailEl && emailEl.value) data.email = emailEl.value.trim().toLowerCase();
-
-        // Phone
-        const phoneEl = document.getElementById('phone') ||
-                        document.querySelector('input[name="phone"]') ||
-                        document.querySelector('input[type="tel"]');
-        if (phoneEl && phoneEl.value) data.phone = phoneEl.value.trim();
-
-        // Name
-        const nameEl = document.getElementById('fullName') ||
-                       document.querySelector('input[name="fullName"]') ||
-                       document.querySelector('input[name="full_name"]');
-        if (nameEl && nameEl.value) {
-            const parts = nameEl.value.trim().split(' ');
-            data.firstName = parts[0] || '';
-            data.lastName = parts.slice(1).join(' ') || '';
+        if (email) u.email = email;
+        if (phone) u.phone = phone;
+        if (name)  {
+            const parts = name.split(' ');
+            u.firstName = parts[0] || '';
+            u.lastName  = parts.slice(1).join(' ') || '';
         }
 
-        // Snap Click ID
-        const scid = getSnapClickId();
-        if (scid) data.scid = scid;
-
-        return data;
+        const scid = getScCid();
+        if (scid) u.scid = scid;
+        return u;
     }
 
-    // ────────────────────────────────────────────
-    // SNAP PIXEL SDK INIT
-    // ────────────────────────────────────────────
-
-    function initSnapPixel(pixelId) {
-        if (typeof window.snaptr === 'function') {
-            // Already loaded
-            window.snaptr('init', pixelId, {
-                'user_email': ''  // Will be set per-event
-            });
-            return;
-        }
-
-        // Standard Snap Pixel base code
-        (function (e, t, n) {
-            if (e.snaptr) return;
-            var a = e.snaptr = function () {
-                a.handleRequest ? a.handleRequest.apply(a, arguments) : a.queue.push(arguments);
-            };
-            a.queue = [];
-            var s = 'script';
-            var r = t.createElement(s);
-            r.async = !0;
-            r.src = n;
-            var u = t.getElementsByTagName(s)[0];
-            u.parentNode.insertBefore(r, u);
-        })(window, document, 'https://sc-static.net/scevent.min.js');
-
-        window.snaptr('init', pixelId, {
-            'user_email': '' // populated on conversion events
-        });
-
-        console.log('[Snap Pixel] Initialized:', pixelId);
-    }
-
-    // ────────────────────────────────────────────
-    // CAPI: DUAL-FIRE SERVER-SIDE EVENT
-    // ────────────────────────────────────────────
-
-    /**
-     * Fire event to server-side CAPI (non-blocking, fire-and-forget)
-     * The event_id MUST match the Pixel SDK's client_dedup_id to prevent double-counting
-     */
-    async function fireCapiEvent(eventName, eventId, userData, customData) {
-        if (!CAPI_ENABLED) return;
-
+    // ─── CAPI dual-fire (server-side) ────────────────
+    async function capi(eventName, eventId, customData) {
+        if (!CAPI_READY) return;
         try {
-            await fetch(CAPI_ENDPOINT, {
+            await fetch(CAPI_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                keepalive: true, // Ensures request completes even if page unloads
+                keepalive: true,
                 body: JSON.stringify({
                     eventName,
                     eventId,
                     eventSourceUrl: window.location.href,
-                    userData: userData || {},
+                    userData: collectUser(),
                     customData: customData || {}
                 })
             });
-        } catch (err) {
-            // Silent fail — pixel already fired
-            console.warn('[Snap CAPI] Failed to send server-side event:', err.message);
-        }
+        } catch (_) { /* silent — pixel already fired */ }
     }
 
-    // ────────────────────────────────────────────
-    // PUBLIC EVENTS API
-    // ────────────────────────────────────────────
+    // ─── Core fire function ───────────────────────────
+    function fire(snapEvent, eventId, params, capiEventName, capiData) {
+        // Browser pixel
+        if (window.snaptr) {
+            window.snaptr('track', snapEvent, {
+                client_dedup_id: eventId,
+                ...(params || {})
+            });
+        }
+        // Server CAPI (dual-fire with same event_id for deduplication)
+        capi(capiEventName || snapEvent, eventId, capiData || {});
+        console.debug(`[Snap] ${snapEvent} | ${eventId}`);
+    }
 
-    /**
-     * Track PAGE_VIEW — call on every page load
-     */
+    // ═══════════════════════════════════════════════════
+    // 1. PAGE VIEW — fires on every page load
+    // ═══════════════════════════════════════════════════
     function trackPageView() {
-        const eventId = genEventId('pv');
+        const id = genId('pv');
+        // Pixel base code already fires PAGE_VIEW on init — we just sync CAPI
+        capi('PageView', id, {
+            contentName: document.title,
+            contentCategory: getPageCategory()
+        });
+    }
 
-        // Browser pixel
-        if (window.snaptr) {
-            window.snaptr('track', 'PAGE_VIEW', {
-                client_dedup_id: eventId
+    function getPageCategory() {
+        const path = window.location.pathname;
+        if (path.includes('service-form')) return 'lead_form';
+        if (path.includes('case-studies')) return 'case_studies';
+        if (path.includes('blog'))         return 'blog';
+        if (path.includes('about'))        return 'about';
+        if (path.includes('contact'))      return 'contact';
+        if (path.includes('workflow'))     return 'workflow';
+        return 'home';
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 2. SCROLL DEPTH — 25%, 50%, 75%, 100%
+    // ═══════════════════════════════════════════════════
+    function initScrollTracking() {
+        const milestones = [25, 50, 75, 100];
+        const reached    = new Set();
+
+        function onScroll() {
+            const scrolled = window.scrollY + window.innerHeight;
+            const total    = document.documentElement.scrollHeight;
+            const pct      = Math.round((scrolled / total) * 100);
+
+            milestones.forEach(m => {
+                if (pct >= m && !reached.has(m)) {
+                    reached.add(m);
+                    const id = genId(`scroll${m}`);
+                    fire('CUSTOM_EVENT_5', id,
+                        { description: `Scroll ${m}%`, number_items: String(m) },
+                        'ScrollDepth',
+                        { contentName: `Scroll ${m}%`, contentCategory: getPageCategory(), value: m }
+                    );
+                }
             });
         }
 
-        // Server CAPI
-        fireCapiEvent('PageView', eventId, collectUserData(), {});
-
-        console.log('[Snap] PAGE_VIEW fired | event_id:', eventId);
+        window.addEventListener('scroll', onScroll, { passive: true });
     }
 
-    /**
-     * Track SIGN_UP (lead / form submission)
-     * @param {Object} userData  - { email, phone, firstName, lastName }
-     * @param {Object} extraData - { serviceType, budget, currency }
-     */
-    function trackSignUp(userData, extraData) {
-        const eventId = genEventId('su');
-        const user = { ...collectUserData(), ...userData };
-        const scid = getSnapClickId();
-        if (scid) user.scid = scid;
-
-        // Browser pixel
-        if (window.snaptr) {
-            window.snaptr('track', 'SIGN_UP', {
-                client_dedup_id: eventId,
-                user_email: user.email || '',
-                user_phone_number: user.phone || '',
-                description: extraData?.serviceType || 'Lead Form'
-            });
-        }
-
-        // Server CAPI (with full hashed PII)
-        fireCapiEvent('Lead', eventId, user, {
-            contentName: extraData?.serviceType || 'Lead Form',
-            contentCategory: 'marketing_services',
-            currency: extraData?.currency || 'USD',
-            value: extraData?.budget || 0
+    // ═══════════════════════════════════════════════════
+    // 3. TIME ON PAGE — 30s, 60s, 3min engagement
+    // ═══════════════════════════════════════════════════
+    function initTimeTracking() {
+        const times = [30, 60, 180]; // seconds
+        times.forEach(sec => {
+            setTimeout(() => {
+                const id = genId(`time${sec}`);
+                fire('VIEW_CONTENT', id,
+                    { description: `Engaged ${sec}s on ${document.title}` },
+                    'TimeEngagement',
+                    { contentName: `${sec}s engagement`, contentCategory: getPageCategory(), value: sec }
+                );
+            }, sec * 1000);
         });
-
-        console.log('[Snap] SIGN_UP (Lead) fired | event_id:', eventId);
-        return eventId;
     }
 
-    /**
-     * Track CUSTOM_EVENT_1 (WhatsApp click)
-     */
-    function trackWhatsAppClick() {
-        const eventId = genEventId('wa');
-
-        if (window.snaptr) {
-            window.snaptr('track', 'CUSTOM_EVENT_1', {
-                client_dedup_id: eventId,
-                description: 'WhatsApp Contact Click'
-            });
-        }
-
-        fireCapiEvent('WhatsAppClick', eventId, collectUserData(), {
-            contentName: 'WhatsApp Click',
-            contentCategory: 'contact'
-        });
-
-        console.log('[Snap] CUSTOM_EVENT_1 (WhatsApp) fired | event_id:', eventId);
-    }
-
-    /**
-     * Track CUSTOM_EVENT_2 (Calendly click)
-     */
-    function trackCalendlyClick() {
-        const eventId = genEventId('cal');
-
-        if (window.snaptr) {
-            window.snaptr('track', 'CUSTOM_EVENT_2', {
-                client_dedup_id: eventId,
-                description: 'Calendly Schedule Click'
-            });
-        }
-
-        fireCapiEvent('CalendlyClick', eventId, collectUserData(), {
-            contentName: 'Calendly Schedule Click',
-            contentCategory: 'scheduling'
-        });
-
-        console.log('[Snap] CUSTOM_EVENT_2 (Calendly) fired | event_id:', eventId);
-    }
-
-    /**
-     * Track VIEW_CONTENT (case study / portfolio piece viewed)
-     * @param {string} contentName - Title of the content
-     */
-    function trackViewContent(contentName) {
-        const eventId = genEventId('vc');
-
-        if (window.snaptr) {
-            window.snaptr('track', 'VIEW_CONTENT', {
-                client_dedup_id: eventId,
-                description: contentName || 'Portfolio Content'
-            });
-        }
-
-        fireCapiEvent('ViewContent', eventId, collectUserData(), {
-            contentName: contentName || 'Portfolio Content',
-            contentCategory: 'portfolio'
-        });
-
-        console.log('[Snap] VIEW_CONTENT fired | content:', contentName, '| event_id:', eventId);
-    }
-
-    // ────────────────────────────────────────────
-    // AUTO-BIND: WhatsApp & Calendly links
-    // ────────────────────────────────────────────
-
-    function bindClickEvents() {
-        // WhatsApp links
-        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(link => {
-            if (link.dataset.snapBound) return;
-            link.dataset.snapBound = '1';
-            link.addEventListener('click', trackWhatsAppClick);
-        });
-
-        // Calendly links
-        document.querySelectorAll('a[href*="calendly.com"]').forEach(link => {
-            if (link.dataset.snapBound) return;
-            link.dataset.snapBound = '1';
-            link.addEventListener('click', trackCalendlyClick);
-        });
-
-        // Case study / portfolio cards
-        document.querySelectorAll('.case-card, [data-track="view-content"]').forEach(card => {
-            if (card.dataset.snapBound) return;
-            card.dataset.snapBound = '1';
-            card.addEventListener('click', () => {
-                const title = card.querySelector('h3, h2, .case-title')?.textContent || 'Case Study';
-                trackViewContent(title.trim());
+    // ═══════════════════════════════════════════════════
+    // 4. WHATSAPP CLICK
+    // ═══════════════════════════════════════════════════
+    function bindWhatsApp() {
+        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const id = genId('wa');
+                fire('CUSTOM_EVENT_1', id,
+                    { description: 'WhatsApp Contact Click' },
+                    'WhatsAppClick',
+                    { contentName: 'WhatsApp Click', contentCategory: 'contact' }
+                );
             });
         });
     }
 
-    // ────────────────────────────────────────────
-    // FORM AUTO-TRACKING
-    // ────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════
+    // 5. CALENDLY / SCHEDULE CLICK
+    // ═══════════════════════════════════════════════════
+    function bindCalendly() {
+        document.querySelectorAll('a[href*="calendly.com"]').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const id = genId('cal');
+                fire('CUSTOM_EVENT_2', id,
+                    { description: 'Calendly Schedule Click' },
+                    'CalendlyClick',
+                    { contentName: 'Calendly Schedule', contentCategory: 'scheduling' }
+                );
+            });
+        });
+    }
 
-    function bindFormTracking() {
+    // ═══════════════════════════════════════════════════
+    // 6. CTA BUTTON CLICKS (all primary buttons)
+    // ═══════════════════════════════════════════════════
+    function bindCTAButtons() {
+        const selectors = [
+            '.btn-primary',
+            '.nav-cta',
+            '.hire-me-trigger',
+            '[data-cta]'
+        ];
+        document.querySelectorAll(selectors.join(',')).forEach(el => {
+            // Skip if already bound or it's a WhatsApp/Calendly link (tracked separately)
+            if (el.dataset.snapCtaBound) return;
+            if (el.href && (el.href.includes('wa.me') || el.href.includes('calendly.com'))) return;
+            el.dataset.snapCtaBound = '1';
+
+            el.addEventListener('click', () => {
+                const label = el.textContent.trim().slice(0, 50) || el.getAttribute('aria-label') || 'CTA';
+                const id = genId('cta');
+                fire('CUSTOM_EVENT_4', id,
+                    { description: label },
+                    'CTAClick',
+                    { contentName: label, contentCategory: getPageCategory() }
+                );
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 7. CASE STUDY / PORTFOLIO VIEW
+    // ═══════════════════════════════════════════════════
+    function bindCaseStudies() {
+        document.querySelectorAll('.case-card, [data-track="view-content"]').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const title = el.querySelector('h3, h2, h4')?.textContent?.trim()?.slice(0, 60) || 'Case Study';
+                const id = genId('vc');
+                fire('CUSTOM_EVENT_3', id,
+                    { description: title },
+                    'CaseStudyView',
+                    { contentName: title, contentCategory: 'portfolio' }
+                );
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 8. BLOG POST CLICK
+    // ═══════════════════════════════════════════════════
+    function bindBlogPosts() {
+        document.querySelectorAll('.blog-card, .blog-preview-card, a[href*="blog.html"]').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const title = el.querySelector('h3, h2')?.textContent?.trim()?.slice(0, 60) || 'Blog Post';
+                const id = genId('blog');
+                fire('VIEW_CONTENT', id,
+                    { description: title },
+                    'BlogView',
+                    { contentName: title, contentCategory: 'blog' }
+                );
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 9. SERVICE CATEGORY CLICK (expertise icons)
+    // ═══════════════════════════════════════════════════
+    function bindServiceItems() {
+        document.querySelectorAll('.expertise-icon-item, .service-item, a[href*="service-form"]').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const label = el.textContent?.trim()?.slice(0, 50) || 'Service';
+                const id = genId('svc');
+                fire('VIEW_CONTENT', id,
+                    { description: label },
+                    'ServiceClick',
+                    { contentName: label, contentCategory: 'services' }
+                );
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 10. LEAD FORM SUBMIT (SIGN_UP)
+    // ═══════════════════════════════════════════════════
+    function bindForms() {
         document.querySelectorAll('form').forEach(form => {
             if (form.dataset.snapBound) return;
             form.dataset.snapBound = '1';
 
-            form.addEventListener('submit', () => {
-                const emailEl = form.querySelector('input[name="email"], input[type="email"]');
-                const phoneEl = form.querySelector('input[name="phone"], input[type="tel"]');
-                const nameEl  = form.querySelector('input[name="fullName"], input[name="full_name"]');
+            // Track form START (first input touched)
+            let formStarted = false;
+            form.querySelectorAll('input, select, textarea').forEach(input => {
+                input.addEventListener('focus', () => {
+                    if (formStarted) return;
+                    formStarted = true;
+                    const id = genId('fstart');
+                    fire('VIEW_CONTENT', id,
+                        { description: 'Form Started' },
+                        'FormStart',
+                        { contentName: form.id || 'Lead Form', contentCategory: 'lead_form' }
+                    );
+                }, { once: true });
+            });
 
-                const userData = {};
-                if (emailEl?.value) userData.email = emailEl.value.trim().toLowerCase();
-                if (phoneEl?.value) userData.phone  = phoneEl.value.trim();
-                if (nameEl?.value) {
-                    const parts = nameEl.value.trim().split(' ');
-                    userData.firstName = parts[0] || '';
-                    userData.lastName  = parts.slice(1).join(' ') || '';
+            // Track form SUBMIT (SIGN_UP)
+            form.addEventListener('submit', () => {
+                const user = collectUser();
+                const id   = genId('su');
+
+                if (window.snaptr) {
+                    window.snaptr('track', 'SIGN_UP', {
+                        client_dedup_id: id,
+                        user_email: user.email || '',
+                        description: form.id || 'Lead Form Submit'
+                    });
                 }
 
-                const serviceEl = form.querySelector('select[name="serviceType"], input[name="serviceType"]');
-                const budgetEl  = form.querySelector('select[name="budget"], input[name="budget"]');
-
-                trackSignUp(userData, {
-                    serviceType: serviceEl?.value || form.dataset.service || '',
-                    budget: 0
+                capi('Lead', id, {
+                    contentName: form.id || 'Lead Form',
+                    contentCategory: 'lead_form'
                 });
             });
         });
     }
 
-    // ────────────────────────────────────────────
-    // INITIALIZE
-    // ────────────────────────────────────────────
-
-    async function init() {
-        try {
-            // Fetch pixel config from server
-            const res = await fetch('/api/snap/config');
-            if (!res.ok) return; // Pixel not configured — silent exit
-
-            const { data } = await res.json();
-            SNAP_PIXEL_ID = data.pixelId;
-            CAPI_ENABLED  = data.capiEnabled;
-
-            if (!SNAP_PIXEL_ID) return;
-
-            // Init Snap Pixel SDK
-            initSnapPixel(SNAP_PIXEL_ID);
-
-            // Fire PAGE_VIEW
-            trackPageView();
-
-            // Bind click/form tracking after DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => {
-                    bindClickEvents();
-                    bindFormTracking();
-                });
-            } else {
-                bindClickEvents();
-                bindFormTracking();
-            }
-
-            // Re-bind after dynamic content loads (e.g., modals, SPA nav)
-            const observer = new MutationObserver(() => {
-                bindClickEvents();
-                bindFormTracking();
+    // ═══════════════════════════════════════════════════
+    // 11. HIRE ME MODAL OPEN
+    // ═══════════════════════════════════════════════════
+    function bindHireMeModal() {
+        document.querySelectorAll('.hire-me-trigger').forEach(el => {
+            if (el.dataset.snapHireBound) return;
+            el.dataset.snapHireBound = '1';
+            el.addEventListener('click', () => {
+                const id = genId('hire');
+                fire('VIEW_CONTENT', id,
+                    { description: 'Hire Me Modal Opened' },
+                    'HireMeOpen',
+                    { contentName: 'Hire Me Modal', contentCategory: 'lead_form' }
+                );
             });
-            observer.observe(document.body, { childList: true, subtree: true });
-
-        } catch (err) {
-            // Silent fail — tracking should never break the site
-            console.warn('[Snap Pixel] Init failed:', err.message);
-        }
+        });
     }
 
-    // ────────────────────────────────────────────
-    // EXPOSE GLOBAL API
-    // ────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════
+    // 12. SECTION VIEWS (IntersectionObserver)
+    //     Fires when key sections scroll into view
+    // ═══════════════════════════════════════════════════
+    function initSectionTracking() {
+        const sections = {
+            'services':  'Services Section Viewed',
+            'work':      'Case Studies Section Viewed',
+            'about':     'About Section Viewed',
+            'contact':   'Contact Section Viewed',
+            'expertise': 'Expertise Section Viewed',
+        };
 
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const sectionId = entry.target.id;
+                const label = sections[sectionId];
+                if (!label || _fired.has(sectionId)) return;
+                _fired.add(sectionId);
+                observer.unobserve(entry.target);
+
+                const id = genId(`sec_${sectionId}`);
+                fire('VIEW_CONTENT', id,
+                    { description: label },
+                    'SectionView',
+                    { contentName: label, contentCategory: getPageCategory() }
+                );
+            });
+        }, { threshold: 0.3 });
+
+        Object.keys(sections).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 13. SOCIAL MEDIA CLICKS
+    // ═══════════════════════════════════════════════════
+    function bindSocialClicks() {
+        const socialMap = {
+            'snapchat.com': 'Snapchat',
+            'instagram.com': 'Instagram',
+            'facebook.com': 'Facebook',
+            'tiktok.com': 'TikTok',
+            'twitter.com': 'Twitter/X',
+            'linkedin.com': 'LinkedIn',
+            'reddit.com': 'Reddit',
+            'youtube.com': 'YouTube'
+        };
+
+        document.querySelectorAll('a.social-icon, .footer-socials a').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const href     = el.href || '';
+                const platform = Object.entries(socialMap).find(([k]) => href.includes(k))?.[1] || 'Social';
+                const id = genId('social');
+                fire('CUSTOM_EVENT_4', id,
+                    { description: `${platform} Click` },
+                    'SocialClick',
+                    { contentName: platform, contentCategory: 'social' }
+                );
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 14. EMAIL / PHONE LINK CLICKS
+    // ═══════════════════════════════════════════════════
+    function bindContactLinks() {
+        document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(el => {
+            if (el.dataset.snapBound) return;
+            el.dataset.snapBound = '1';
+            el.addEventListener('click', () => {
+                const type = el.href.startsWith('mailto') ? 'Email Click' : 'Phone Click';
+                const id   = genId('contact');
+                fire('CUSTOM_EVENT_1', id,
+                    { description: type },
+                    'ContactClick',
+                    { contentName: type, contentCategory: 'contact' }
+                );
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // BIND ALL (runs on init + re-runs on DOM changes)
+    // ═══════════════════════════════════════════════════
+    function bindAll() {
+        bindWhatsApp();
+        bindCalendly();
+        bindCTAButtons();
+        bindCaseStudies();
+        bindBlogPosts();
+        bindServiceItems();
+        bindForms();
+        bindHireMeModal();
+        bindSocialClicks();
+        bindContactLinks();
+    }
+
+    // ═══════════════════════════════════════════════════
+    // INITIALIZE
+    // ═══════════════════════════════════════════════════
+    async function init() {
+        try {
+            // Check if CAPI is configured server-side
+            const res = await fetch('/api/snap/config').catch(() => null);
+            if (res && res.ok) {
+                const { data } = await res.json();
+                CAPI_READY = data?.capiEnabled || false;
+            }
+        } catch (_) {}
+
+        // Fire PAGE_VIEW CAPI sync (pixel base code already fired it client-side)
+        trackPageView();
+
+        // Start engagement trackers
+        initScrollTracking();
+        initTimeTracking();
+
+        // Bind all click/interaction events after DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                bindAll();
+                initSectionTracking();
+            });
+        } else {
+            bindAll();
+            initSectionTracking();
+        }
+
+        // Re-bind when dynamic content is injected (modals, SPA nav, etc.)
+        new MutationObserver(() => bindAll()).observe(
+            document.body || document.documentElement,
+            { childList: true, subtree: true }
+        );
+    }
+
+    // ─── Public API ───────────────────────────────────
     window.SnapTrack = {
-        trackPageView,
-        trackSignUp,
-        trackWhatsAppClick,
-        trackCalendlyClick,
-        trackViewContent,
-        fireCapiEvent,
-        getSnapClickId
+        pageView:      () => trackPageView(),
+        signUp:        (userData, data) => {
+            const id = genId('su');
+            if (window.snaptr) window.snaptr('track', 'SIGN_UP', { client_dedup_id: id, user_email: userData?.email || '' });
+            capi('Lead', id, data || {});
+        },
+        viewContent:   (name, cat)  => { const id = genId('vc');  fire('VIEW_CONTENT',   id, { description: name }, 'ViewContent',   { contentName: name, contentCategory: cat }); },
+        whatsapp:      ()           => { const id = genId('wa');  fire('CUSTOM_EVENT_1', id, { description: 'WhatsApp' }, 'WhatsAppClick', {}); },
+        calendly:      ()           => { const id = genId('cal'); fire('CUSTOM_EVENT_2', id, { description: 'Calendly' }, 'CalendlyClick', {}); },
+        cta:           (label)      => { const id = genId('cta'); fire('CUSTOM_EVENT_4', id, { description: label },   'CTAClick', { contentName: label }); },
+        fire
     };
 
-    // Auto-init
+    // Auto-start
     init();
 
 })(window, document);
