@@ -1,15 +1,15 @@
 import glob
 import os
 
-gtm_script = """
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NQ4S5RW8');</script>
-    <!-- End Google Tag Manager -->
-"""
+gtm_script = """    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18137984256"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18137984256');
+    </script>"""
 
 files = glob.glob('public/**/*.html', recursive=True)
 
@@ -17,11 +17,12 @@ for filepath in files:
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    if "GTM-NQ4S5RW8" not in content and "</head>" in content:
+    if "AW-18137984256" not in content and "</head>" in content:
         # Insert just before </head>
-        content = content.replace("</head>", f"{gtm_script}</head>")
+        content = content.replace("</head>", f"{gtm_script}\n</head>")
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
-        print(f"Added GTM to {filepath}")
+        print(f"Added Google tag to {filepath}")
     else:
-        print(f"Skipped {filepath} (already contains GTM or no </head>)")
+        print(f"Skipped {filepath} (already contains Google tag or no </head>)")
+
