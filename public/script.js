@@ -211,8 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ───────────────────────────────────────────
      *  DYNAMIC EXPERTISE INTERACTIVE ELEMENTS
      * ─────────────────────────────────────────── */
-    const currentLang = localStorage.getItem('site_lang') || 'ar';
-    const badgeText = currentLang === 'en' ? '10-Q Evaluation' : 'تقييم 10 أسئلة';
+    const badgeText = 'تقييم 10 أسئلة';
     
     document.querySelectorAll('.expertise-icon-item').forEach(item => {
         // Add hand pointer emoji indicator if not exists
