@@ -317,6 +317,7 @@
 
       gtag('config', 'AW-18137984256');
     </script>
+    <script src="js/i18n.js"></script>
 </head>
 
 <body>
@@ -331,12 +332,12 @@
         <div class="container nav-inner">
             <a href="index.html" class="nav-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="about.html">من أنا</a></li>
-                <li><a href="case-studies.html">قصص النجاح</a></li>
+                <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+                <li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
+                <li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
                 <li><a href="/Hazem Ai Portfolio/index.html" target="_blank">معرض أعمالي </a></li>
                 <li><a href="blog.html" class="active">المدونة</a></li>
-                <li><a href="contact.html">اتصل بي</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
 
                 <li class="mobile-only-cta" style="display:none; margin-top:20px;"><span class="desktop-cta-item"><a
                             href="#" class="nav-cta hire-me-trigger"
@@ -348,6 +349,11 @@
                             موعد للتواصل</a></span></li>
             </ul>
             <div style="display:flex;align-items:center;gap:16px;">
+				<div class="lang-switcher">
+					<button class="lang-btn" data-lang="ar">AR</button>
+					<button class="lang-btn" data-lang="en">EN</button>
+				</div>
+
 
 
                 <span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
@@ -461,11 +467,11 @@
                 <div class="footer-col">
                     <h4>روابط سريعة</h4>
                     <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="about.html">من أنا</a></li>
-                        <li><a href="case-studies.html">قصص النجاح</a></li>
+                        <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+                        <li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
+                        <li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
                         <li><a href="blog.html">المدونة</a></li>
-                        <li><a href="contact.html">اتصل بي</a></li>
+                        <li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -495,14 +501,14 @@
                             <line x1="3" y1="10" x2="21" y2="10" />
                         </svg>
                         <a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
-                            style="color:var(--primary);font-weight:700;">احجز موعد عبر Calendly</a>
+                            style="color:var(--primary);font-weight:700;" data-i18n="footer_calendly_link">احجز موعد عبر Calendly</a>
                     </div>
                     <div class="footer-contact-item">
                         <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
                         <a href="https://wa.me/201017173228" target="_blank"
-                            style="color:var(--primary);font-weight:700;">تواصل عبر WhatsApp</a>
+                            style="color:var(--primary);font-weight:700;" data-i18n="footer_whatsapp_link">تواصل عبر WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -715,6 +721,8 @@
     <script src="whatsapp-widget.js?v=4"></script>
 
     <script src="telegram-widget.js?v=4"></script>
+
+    <script src="translator.js"></script>
 </body>
 
 </html>

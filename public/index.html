@@ -39,6 +39,7 @@
 
       gtag('config', 'AW-18137984256');
     </script>
+    <script src="js/i18n.js"></script>
 </head>
 
 <body>
@@ -53,11 +54,11 @@
 		<div class="container nav-inner">
 			<a href="index.html" class="nav-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
 			<ul class="nav-menu" id="nav-menu">
-				<li><a href="index.html" class="active">الرئيسية</a></li>
-				<li><a href="about.html">من أنا</a></li>
-				<li><a href="case-studies.html">قصص النجاح</a></li>
-				<li><a href="workflow.html">منهجية العمل</a></li>
-				<li><a href="contact.html">اتصل بي</a></li>
+				<li><a href="index.html" class="active" data-i18n="nav_home">الرئيسية</a></li>
+				<li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
+				<li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
+				<li><a href="workflow.html" data-i18n="nav_workflow">منهجية العمل</a></li>
+				<li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
 
 				<li class="mobile-only-cta" style="display:none; margin-top:20px;"><span class="desktop-cta-item"><a
 							href="#" class="nav-cta hire-me-trigger"
@@ -69,6 +70,11 @@
 							موعد للتواصل</a></span></li>
 			</ul>
 			<div style="display:flex;align-items:center;gap:16px;">
+				<div class="lang-switcher">
+					<button class="lang-btn" data-lang="ar">AR</button>
+					<button class="lang-btn" data-lang="en">EN</button>
+				</div>
+
 
 				<span class="desktop-cta-item"><a href="#" class="nav-cta hire-me-trigger"
 						style="background:#0f172a; margin-left:12px;">اطلب العمل معي</a></span>
@@ -96,7 +102,7 @@
 			<div class="hero-text">
 				<div class="badge fade-up">
 					<span class="pulse-dot"></span>
-					<span>أقبل <strong class="en-text">3</strong> علامات تجارية جديدة فقط هذا الربع</span>
+					<span data-i18n="hero_badge">أقبل <strong class="en-text">3</strong> علامات تجارية جديدة فقط هذا الربع</span>
 				</div>
 
 				<h1 class="hero-title fade-up delay-1">
@@ -114,21 +120,21 @@
 							<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.5"
 								stroke-linecap="round" stroke-linejoin="round"></polyline>
 						</svg>
-						<span>Brands spending $5K–$150K</span>
+						<span data-i18n="filter_brands">Brands spending $5K–$150K</span>
 					</div>
 					<div class="filter">
 						<svg viewBox="0 0 24 24" fill="none" class="check-icon">
 							<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.5"
 								stroke-linecap="round" stroke-linejoin="round"></polyline>
 						</svg>
-						<span>Revenue-generating</span>
+						<span data-i18n="filter_revenue">Revenue-generating</span>
 					</div>
 					<div class="filter">
 						<svg viewBox="0 0 24 24" fill="none" class="check-icon">
 							<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.5"
 								stroke-linecap="round" stroke-linejoin="round"></polyline>
 						</svg>
-						<span>Validated offers</span>
+						<span data-i18n="filter_validated">Validated offers</span>
 					</div>
 				</div>
 
@@ -156,7 +162,7 @@
 		<div class="container">
 			<div class="intro-grid">
 				<div class="intro-content reveal-left">
-					<h2>بخبرة أكثر من 5 سنوات أساعدك في زيادة <span class="highlight">أرباحك</span></h2>
+					<h2 data-i18n="intro_title">بخبرة أكثر من 5 سنوات أساعدك في زيادة <span class="highlight">أرباحك</span></h2>
 					<p>
 						هدفي الرئيسي أن أستثمر خبرتي الاستراتيجية والبرمجية في مجال <strong>"تحسين نتائج إعلانات التسويق
 							الرقمي"</strong> لتقليل تكلفة إعلانات علامتك التجارية مع زيادة مبيعاتك وأرباحك في أقل وقت
@@ -302,6 +308,7 @@
 		<div class="container">
 			<h2 class="section-heading reveal">بعض من مجالات خبرتي</h2>
 			<div class="section-underline reveal"></div>
+			<p class="expertise-subtitle reveal" data-i18n="expertise_subtitle">اختر مجال عملك لتجيب على 10 أسئلة سريعة تساعدنا في تحديد مرحلة مشروعك وتصميم استراتيجية التسويق الأنسب لك.</p>
 
 			<div class="expertise-icons">
 				<a href="service-form.html?service=ecommerce" class="expertise-icon-item delay-1"
@@ -365,11 +372,11 @@
 						<div class="case-tag">السعودية</div>
 					</div>
 					<div class="case-body">
-						<h3>قصة نجاح متجر إلكتروني <span class="en-text">(E-Commerce)</span></h3>
+						<h3 data-i18n="case1_title">قصة نجاح متجر إلكتروني <span class="en-text">(E-Commerce)</span></h3>
 						<p>تخطى نمو الطلبات والمبيعات <strong style="color:var(--primary)">400%</strong> في فترات قصيرة
 							مع الحفاظ على متوسط عائد إعلاني <strong style="color:var(--primary)">4.5x ROAS</strong> في
 							أحد أكثر الأسواق تنافسية.</p>
-						<span class="case-link">احجز موعد لتسمع القصة كاملة &larr;</span>
+						<span class="case-link"><span data-i18n="case_link"><span data-i18n="case_link">احجز موعد لتسمع القصة كاملة &larr;</span></span></span>
 					</div>
 				</a>
 
@@ -379,10 +386,10 @@
 						<div class="case-tag">الإمارات</div>
 					</div>
 					<div class="case-body">
-						<h3>قصة نجاح شركة عقارات <span class="en-text">(Real Estate)</span></h3>
+						<h3 data-i18n="case2_title">قصة نجاح شركة عقارات <span class="en-text">(Real Estate)</span></h3>
 						<p>أكثر من <strong style="color:var(--primary)">500</strong> عميل محتمل عالي الجودة <span
 								class="en-text">(Leads)</span> مع توفير ملحوظ في الميزانية عبر استهداف دقيق ومدروس.</p>
-						<span class="case-link">احجز موعد لتسمع القصة كاملة &larr;</span>
+						<span class="case-link"><span data-i18n="case_link"><span data-i18n="case_link">احجز موعد لتسمع القصة كاملة &larr;</span></span></span>
 					</div>
 				</a>
 
@@ -392,11 +399,11 @@
 						<div class="case-tag">أمريكا الشمالية</div>
 					</div>
 					<div class="case-body">
-						<h3>قصة نجاح منتج رقمي <span class="en-text">(SaaS)</span></h3>
+						<h3 data-i18n="case3_title">قصة نجاح منتج رقمي <span class="en-text">(SaaS)</span></h3>
 						<p>من خلال استهداف دقيق وهندسة بيانات ال Funnel، خفضنا تكلفة الاستحواذ على العميل <strong
 								style="color:var(--primary)">(CAC)</strong> بنسبة <strong
 								style="color:var(--primary)">60%</strong> ومضاعفة عدد المستخدمين.</p>
-						<span class="case-link">احجز موعد لتسمع القصة كاملة &larr;</span>
+						<span class="case-link"><span data-i18n="case_link"><span data-i18n="case_link">احجز موعد لتسمع القصة كاملة &larr;</span></span></span>
 					</div>
 				</a>
 			</div>
@@ -852,11 +859,11 @@
 				<div class="footer-col">
 					<h4>روابط سريعة</h4>
 					<ul>
-						<li><a href="index.html">الرئيسية</a></li>
-						<li><a href="about.html">من أنا</a></li>
-						<li><a href="case-studies.html">قصص النجاح</a></li>
-						<li><a href="workflow.html">منهجية العمل</a></li>
-						<li><a href="contact.html">اتصل بي</a></li>
+						<li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+						<li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
+						<li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
+						<li><a href="workflow.html" data-i18n="nav_workflow">منهجية العمل</a></li>
+						<li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
 					</ul>
 				</div>
 				<div class="footer-col">
@@ -886,14 +893,14 @@
 							<line x1="3" y1="10" x2="21" y2="10" />
 						</svg>
 						<a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
-							style="color:var(--primary);font-weight:700;">احجز موعد عبر Calendly</a>
+							style="color:var(--primary);font-weight:700;" data-i18n="footer_calendly_link">احجز موعد عبر Calendly</a>
 					</div>
 					<div class="footer-contact-item">
 						<svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
 							<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
 						</svg>
 						<a href="https://wa.me/201017173228" target="_blank"
-							style="color:var(--primary);font-weight:700;">تواصل عبر WhatsApp</a>
+							style="color:var(--primary);font-weight:700;" data-i18n="footer_whatsapp_link">تواصل عبر WhatsApp</a>
 					</div>
 				</div>
 			</div>
@@ -1066,5 +1073,7 @@
 	<script src="whatsapp-widget.js?v=4"></script>
 
     <script src="telegram-widget.js?v=4"></script>
+
+    <script src="translator.js"></script>
 </body>
 </html>

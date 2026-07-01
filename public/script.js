@@ -207,4 +207,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         loadHomeBlog();
     }
+
+    /* ───────────────────────────────────────────
+     *  DYNAMIC EXPERTISE INTERACTIVE ELEMENTS
+     * ─────────────────────────────────────────── */
+    const currentLang = localStorage.getItem('site_lang') || 'ar';
+    const badgeText = currentLang === 'en' ? '10-Q Evaluation' : 'تقييم 10 أسئلة';
+    
+    document.querySelectorAll('.expertise-icon-item').forEach(item => {
+        // Add hand pointer emoji indicator if not exists
+        if (!item.querySelector('.tap-indicator')) {
+            const indicator = document.createElement('span');
+            indicator.className = 'tap-indicator';
+            indicator.innerHTML = '👆';
+            item.appendChild(indicator);
+        }
+        
+        // Add evaluation quiz badge if not exists
+        if (!item.querySelector('.quiz-badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'quiz-badge';
+            badge.innerHTML = badgeText;
+            item.appendChild(badge);
+        }
+    });
 });
+
