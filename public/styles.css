@@ -2203,3 +2203,66 @@ img, video, iframe, canvas, svg {
     }
 }
 
+
+/* Premium Native Emoji Styles */
+.premium-emoji-wrapper {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(235, 23, 81, 0.08) 0%, rgba(194, 24, 77, 0.03) 100%);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(235, 23, 81, 0.06);
+    border: 1px solid rgba(235, 23, 81, 0.15);
+    font-size: 34px;
+}
+.expertise-icon-item:hover .premium-emoji-wrapper {
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 12px 24px rgba(235, 23, 81, 0.12);
+    background: linear-gradient(135deg, rgba(235, 23, 81, 0.15) 0%, rgba(194, 24, 77, 0.1) 100%);
+}
+.native-emoji {
+    font-size: 1.2em;
+    vertical-align: middle;
+    display: inline-block;
+}
+.large-native-emoji {
+    font-size: 44px;
+    vertical-align: middle;
+    display: inline-block;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Fix missing logic questions CSS */
+.radio-group, .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.radio-option:hover, .checkbox-option:hover {
+    border-color: rgba(235, 23, 81, 0.5);
+    background: rgba(235, 23, 81, 0.02);
+}
+.radio-option input[type="radio"], .checkbox-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}

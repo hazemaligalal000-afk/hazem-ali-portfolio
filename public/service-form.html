@@ -520,7 +520,7 @@
                     // Create new insight box
                     const insightDiv = document.createElement('div');
                     insightDiv.className = 'insight-box';
-                    insightDiv.innerHTML = `<strong><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4a1.png" alt="💡" class="inline-emoji"> رؤية وخبرة حازم في هذا الجانب:</strong>${qObj.insights[val]}`;
+                    insightDiv.innerHTML = `<strong><span class="native-emoji">💡</span> رؤية وخبرة حازم في هذا الجانب:</strong>${qObj.insights[val]}`;
                     currentWrap.appendChild(insightDiv);
                 }
 
