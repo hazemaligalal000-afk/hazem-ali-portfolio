@@ -2179,15 +2179,21 @@ img, video, iframe, canvas, svg {
 .platforms-logos svg.platform-icon {
     height: 28px;
     width: auto;
-    fill: #6b7280;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
-.platforms-logos svg#icon-meta:hover { fill: #0668E1; transform: translateY(-4px) scale(1.1); }
-.platforms-logos svg#icon-googleads:hover { fill: #F4B400; transform: translateY(-4px) scale(1.1); }
-.platforms-logos svg#icon-snapchat:hover { fill: #FFFC00; transform: translateY(-4px) scale(1.1); drop-shadow: 0 4px 6px rgba(255, 252, 0, 0.3); }
-.platforms-logos svg#icon-tiktok:hover { fill: #000000; transform: translateY(-4px) scale(1.1); }
-.platforms-logos svg#icon-shopify:hover { fill: #96BF48; transform: translateY(-4px) scale(1.1); }
+.platforms-logos svg#icon-meta { fill: #0668E1; }
+.platforms-logos svg#icon-googleads { fill: #F4B400; }
+.platforms-logos svg#icon-snapchat { fill: #FFCC00; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); } /* slightly darker yellow for visibility */
+.platforms-logos svg#icon-tiktok { fill: #000000; }
+.platforms-logos svg#icon-shopify { fill: #96BF48; }
+
+.platforms-logos svg.platform-icon:hover {
+    transform: translateY(-4px) scale(1.1);
+}
+.platforms-logos svg#icon-snapchat:hover {
+    filter: drop-shadow(0 4px 6px rgba(255, 204, 0, 0.4));
+}
 @media (max-width: 768px) {
     .hero-platforms {
         align-items: center;
