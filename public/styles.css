@@ -2340,6 +2340,7 @@ img, video, iframe, canvas, svg {
 
 /* Standard Form Styling (Form Groups & Controls) */
 .form-group {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
