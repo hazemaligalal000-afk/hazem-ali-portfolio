@@ -2382,3 +2382,34 @@ img, video, iframe, canvas, svg {
         transform: translateY(0);
     }
 }
+
+/* Success Message UI */
+.success-message {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-top: 30px;
+}
+.success-message.show {
+    display: block;
+    animation: formFadeIn 0.5s ease forwards;
+}
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: rgba(46, 213, 115, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2ed573;
+}
+.success-icon svg {
+    width: 40px;
+    height: 40px;
+    stroke-width: 3;
+}
