@@ -2241,7 +2241,7 @@ footer {
 #hireMeForm label {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #1e293b;
+    color: #a855f7; /* Purple */
     letter-spacing: 0.3px;
 }
 
@@ -2252,7 +2252,7 @@ footer {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    color: #0f172a;
+    color: #000000; /* Black */
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
     transition: all 0.3s ease;
