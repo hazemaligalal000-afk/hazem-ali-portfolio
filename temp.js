@@ -1,270 +1,11 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
 
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TBV3M4R5"></script>
-    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'GT-TBV3M4R5');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طلب خدمة | Hazem Ali Galal</title>
-    <meta name="description" content="نموذج طلب الخدمة الديناميكي">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Outfit:wght@400;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3">
-    <style>
-    .real-emoji-wrapper {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, rgba(235, 23, 81, 0.08) 0%, rgba(194, 24, 77, 0.03) 100%);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 8px 24px rgba(235, 23, 81, 0.06), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-        border: 1px solid rgba(235, 23, 81, 0.15);
-    }
-    .expertise-icon-item:hover .real-emoji-wrapper {
-        transform: scale(1.15) translateY(-8px);
-        box-shadow: 0 16px 32px rgba(235, 23, 81, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.8);
-        background: linear-gradient(135deg, rgba(235, 23, 81, 0.12) 0%, rgba(194, 24, 77, 0.05) 100%);
-        border: 1px solid rgba(235, 23, 81, 0.3);
-    }
-    .real-emoji {
-        width: 90px;
-        height: 90px;
-        object-fit: contain;
-        filter: drop-shadow(0px 10px 12px rgba(0,0,0,0.15));
-        transition: transform 0.4s ease;
-    }
-    .expertise-icon-item:hover .real-emoji {
-        transform: rotate(-5deg) scale(1.05);
-    }
-    .inline-emoji {
-        height: 1.3em;
-        width: 1.3em;
-        vertical-align: middle;
-        margin: 0 4px;
-        filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
-    }
-    .large-inline-emoji {
-        height: 64px;
-        width: 64px;
-        vertical-align: middle;
-        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
-    }
-    /* Hide the old span if still around */
-    .expertise-icon-item span.icon { display: none; }
-</style>
+    
 
-</head>
-
-<body>
-
-
-
-
-    <div class="nav-overlay" id="nav-overlay"></div>
-
-    <!-- Navigation -->
-    <nav class="topbar" id="topbar">
-        <div class="container nav-inner">
-            <a href="index.html" class="nav-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
-                <li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
-                <li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
-                <li><a href="/Hazem Ai Portfolio/index.html" target="_blank">معرض أعمالي</a></li>
-                <li><a href="blog.html">المدونة</a></li>
-                <li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
-            
-				<li class="mobile-only-cta" style="display:none; margin-top:20px;"><span class="desktop-cta-item"><a href="#" class="nav-cta hire-me-trigger" style="background:#0f172a; width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">اطلب العمل معي</a></span></li>
-				<li class="mobile-only-cta" style="display:none;"><span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta" data-i18n="btn_book_call" style="width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">احجز موعد للتواصل</a></span></li>
-			</ul>
-            <div style="display:flex;align-items:center;gap:16px;">
-				
-
-                
-
-                <span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta">احجز موعد
-                    للتواصل</a></span>
-                <button class="mobile-btn" id="mobile-btn" aria-label="القائمة">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <section class="form-hero">
-        <div class="container">
-            <div class="service-badge" id="serviceBadge">جاري التحديد...</div>
-            <h1>شكراً لاختيارك خدماتنا</h1>
-            <p>يرجى الإجابة على الأسئلة التالية لنتمكن من تقديم أفضل مساعدة لك.</p>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="dynamic-form-container">
-            <form id="dynamicServiceForm" action="https://formspree.io/f/mdalpolb" method="POST">
-
-                <!-- Hidden fields for dynamic data via formspree -->
-                <input type="hidden" name="_subject" value="New Service Request from Hazem Ali Galal Website">
-                <input type="hidden" name="_cc" value="hazemaligalal999@gmail.com">
-                <input type="hidden" name="Service Selected" id="hiddenServiceInput" value="">
-                <input type="hidden" name="Qualification Status" id="hiddenStatusInput" value="">
-
-                <!-- Basic Info -->
-                <div class="form-group" style="animation-delay: 0.1s">
-                    <label for="fullName">الاسم بالكامل <span style="color:var(--primary)">*</span></label>
-                    <input type="text" id="fullName" name="fullName" class="form-control" required
-                        placeholder="أدخل اسمك الكريم" data-i18n-placeholder="form_placeholder_name">
-                </div>
-
-                <div class="form-group" id="group_email" style="animation-delay: 0.2s">
-                    <label for="email">البريد الإلكتروني <span style="color:var(--primary)">*</span></label>
-                    <input type="email" id="email" name="email" class="form-control" required
-                        placeholder="example@domain.com">
-                </div>
-
-                <div class="form-group" id="group_budget" style="animation-delay: 0.3s">
-                    <label for="budget">الميزانية المتوقعة للخدمة (دولار/ريال) <span
-                            style="color:var(--primary)">*</span></label>
-                    <input type="text" id="budget" name="budget" class="form-control" required
-                        placeholder="مثال: $1000 شهرياً أو 3000 ريال" data-i18n-placeholder="form_placeholder_budget">
-                </div>
-
-                <!-- Dynamic Questions Container -->
-                <div id="dynamicQuestionsContainer"></div>
-
-                <button type="submit" class="btn btn-primary submit-btn"
-                    style="animation-delay: 1.5s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    إرسال الطلب
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
-            </form>
-
-            <div class="success-message" id="successMessage">
-                <div class="success-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                </div>
-                <h2 data-i18n="form_success_title">تم استلام طلبك بنجاح!</h2>
-                <p data-i18n="form_success_desc">سنقوم بمراجعة إجاباتك والتواصل معك قريباً.</p>
-                <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">العودة للرئيسية</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
-                    <p>خبير أداء تسويقي متخصص في نمو العلامات التجارية وتحليل البيانات الرقمية، أعمل بشغف لأحدث فارقًا
-                        حقيقيًا في أرباح عملائي.</p>
-                
-					<div class="footer-socials">
-						<a href="#" target="_blank" class="social-icon snapchat" title="Snapchat">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg>
-						</a>
-						<a href="#" target="_blank" class="social-icon tiktok" title="TikTok">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-						</a>
-						<a href="https://wa.me/201017173228" target="_blank" class="social-icon whatsapp" title="WhatsApp">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-						</a>
-						<a href="#" target="_blank" class="social-icon x" title="X (Twitter)">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-						</a>
-						<a href="#" target="_blank" class="social-icon reddit" title="Reddit">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-						</a>
-						<a href="#" target="_blank" class="social-icon instagram" title="Instagram">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-						</a>
-						<a href="#" target="_blank" class="social-icon facebook" title="Facebook">
-							<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-						</a>
-					</div>
-</div>
-                <div class="footer-col">
-                    <h4>روابط سريعة</h4>
-                    <ul>
-                        <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
-                        <li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
-                        <li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
-                        <li><a href="/Hazem Ai Portfolio/index.html" target="_blank">معرض أعمالي</a></li>
-                        <li><a href="blog.html">المدونة</a></li>
-                        <li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>الخدمات</h4>
-                    <ul class="footer-services-list">
-                        <li><a href="service-form.html?service=media-buying">Media Buying</a></li>
-                        <li><a href="service-form.html?service=digital-auditing">Digital Auditing</a></li>
-                        <li><a href="service-form.html?service=consultation">Consultation</a></li>
-                        <li><a href="service-form.html?service=landing-pages">Landing pages/Website</a></li>
-                        <li><a href="service-form.html?service=ecommerce">E-commerce Platforms</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>تواصل معي</h4>
-                    <div class="footer-contact-item">
-                        <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        <span>hazemaligalal999@gmail.com</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                        </svg>
-                        <a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
-                            style="color:var(--primary);font-weight:700;" data-i18n="footer_calendly_link">احجز موعد عبر Calendly</a>
-                    </div>
-                    <div class="footer-contact-item">
-                        <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="var(--primary)">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                        </svg>
-                                                <a href="https://wa.me/201017173228" target="_blank"
-                            style="color:var(--primary);font-weight:700;" data-i18n="footer_whatsapp_link">تواصل عبر WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p data-i18n="footer_rights">&copy; 2026 Hazem Ali Galal. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Load our advanced logic forms data -->
-    <script src="js/logic-forms-data.js"></script>
-    <script>
         const fallbackService = {
             title: "خدمة أخرى",
             questions: [
@@ -327,10 +68,28 @@
 
                 try {
                     // Send to Formspree for email notification
-                    const response = await fetch('https://formspree.io/f/mdalpolb', {
+                    fetch('https://formspree.io/f/mdalpolb', {
                         method: 'POST',
                         body: formData,
                         headers: { 'Accept': 'application/json' }
+                    }).catch(err => console.error('Formspree Error:', err));
+
+                    // Save to backend database (primary)
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const response = await fetch('/api/leads', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fullName: document.getElementById('fullName').value,
+                            email: document.getElementById('email').value,
+                            budget: document.getElementById('budget').value,
+                            serviceType: serviceInfo.title,
+                            qualificationStatus: isUnqualified ? 'unqualified' : 'qualified',
+                            answers: answers,
+                            utmSource: urlParams.get('utm_source'),
+                            utmMedium: urlParams.get('utm_medium'),
+                            utmCampaign: urlParams.get('utm_campaign')
+                        })
                     });
 
                     if (response.ok) {
@@ -699,15 +458,4 @@
             }, 600);
 
         });
-    </script>
-
     
-    <script src="whatsapp-widget.js?v=4"></script>
-
-    <script src="telegram-widget.js?v=4"></script>
-    <script src="js/snap-pixel.js" defer></script>
-
-    </body>
-
-</html>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
