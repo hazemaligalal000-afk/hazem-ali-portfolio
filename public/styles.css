@@ -2474,3 +2474,29 @@ img, video, iframe, canvas, svg {
         font-size: 2rem;
     }
 }
+
+/* Insight Box Styling */
+.insight-box {
+    margin-top: 15px;
+    padding: 18px 20px;
+    background: rgba(235, 23, 81, 0.03); 
+    border-right: 4px solid var(--primary);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    animation: formFadeIn 0.4s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+.insight-box strong {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    color: var(--primary); 
+    background: rgba(235, 23, 81, 0.1); 
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
