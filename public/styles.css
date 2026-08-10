@@ -729,8 +729,8 @@ img {
     background: #ffffff;
     border-radius: var(--radius);
     border: 1px solid #e5e7eb;
-    width: 125px;
-    min-height: 135px;
+    width: 160px;
+    min-height: 180px;
     text-align: center;
     font-size: 0.85rem;
     font-weight: 700;
