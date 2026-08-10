@@ -174,47 +174,69 @@
 			<div class="section-underline reveal"></div>
 			<p class="expertise-subtitle reveal" data-i18n="expertise_subtitle">اختر مجال عملك لتجيب على 10 أسئلة سريعة تساعدنا في تحديد مرحلة مشروعك وتصميم استراتيجية التسويق الأنسب لك.</p>
 
+			
+<style>
+    .expertise-svg-wrapper {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        background: linear-gradient(135deg, #eb1751 0%, #c2184d 100%);
+        box-shadow: 0 4px 12px rgba(235, 23, 81, 0.2);
+        color: white;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .expertise-icon-item:hover .expertise-svg-wrapper {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    /* Hide the old span if still around */
+    .expertise-icon-item span.icon { display: none; }
+</style>
+
 			<div class="expertise-icons">
 				<a href="service-form.html?service=ecommerce" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🛒</span><span>E-Commerce</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></div><span>E-Commerce</span></a>
 				<a href="service-form.html?service=real-estate" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🏠</span><span>Real Estate</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><span>Real Estate</span></a>
 				<a href="service-form.html?service=saas" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">💻</span><span>SaaS</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div><span>SaaS</span></a>
 				<a href="service-form.html?service=fashion" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">👗</span><span>Fashion</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a8.5 8.5 0 0 0-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg></div><span>Fashion</span></a>
 				<a href="service-form.html?service=health-beauty" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">💄</span><span>Health & Beauty</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="6.5"></line></svg></div><span>Health & Beauty</span></a>
 				<a href="service-form.html?service=food-bev" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">🍽️</span><span>Food & Bev</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg></div><span>Food & Bev</span></a>
 				<a href="service-form.html?service=education" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🎓</span><span>Education</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div><span>Education</span></a>
 				<a href="service-form.html?service=medical-clinics" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🏥</span><span>Medical Clinics</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div><span>Medical Clinics</span></a>
 				<a href="service-form.html?service=automotive" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🚗</span><span>Automotive</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="8" rx="2" ry="2"></rect><path d="M4 11L5.5 5.5A2 2 0 0 1 7.5 4h9a2 2 0 0 1 1.9.5L20 11"></path><circle cx="7" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle></svg></div><span>Automotive</span></a>
 				<a href="service-form.html?service=furniture" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">🛋️</span><span>Furniture</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"></path><path d="M3 14h18v4a2 2 0 0 1-2 2h-2v-2H7v2H5a2 2 0 0 1-2-2z"></path></svg></div><span>Furniture</span></a>
 				<a href="service-form.html?service=perfumes" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">🧴</span><span>Perfumes</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg></div><span>Perfumes</span></a>
 				<a href="service-form.html?service=medical" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">💊</span><span>Medical</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20.73V14h4v6.73M14 3.27V10h-4V3.27M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"></path></svg></div><span>Medical</span></a>
 				<a href="service-form.html?service=mobile-apps" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">📱</span><span>Mobile Apps</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span>Mobile Apps</span></a>
 				<a href="service-form.html?service=luxury-brands" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">💎</span><span>Luxury Brands</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"></path><path d="M11 3 8 9l4 13"></path><path d="M12 3v19"></path></svg></div><span>Luxury Brands</span></a>
 				<a href="service-form.html?service=law-firms" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">⚖️</span><span>Law Firms</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M3 21h18"></path><path d="M5 9v4M19 9v4M2 9h20M9 9l-4 8H3l4-8M15 9l4 8h2l-4-8"></path></svg></div><span>Law Firms</span></a>
 				<a href="service-form.html?service=translation" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🌍</span><span>Translation</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div><span>Translation</span></a>
 				<a href="service-form.html?service=recruitment-cleaning" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🧹</span><span>Recruitment & Cleaning</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><span>Recruitment & Cleaning</span></a>
 				<a href="service-form.html?service=consultation" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">💼</span><span>Consultation</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div><span>Consultation</span></a>
 				<a href="service-form.html?service=landing-pages" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">📄</span><span>Landing Pages</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div><span>Landing Pages</span></a>
 				<a href="service-form.html?service=digital-auditing" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🔍</span><span>Digital Auditing</span></a>
+					style="text-decoration:none;"><div class="expertise-svg-wrapper"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><span>Digital Auditing</span></a>
 			</div>
 		</div>
 	</section>
