@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="wa-chat-header">
                 <div class="wa-profile-section">
                     <div class="wa-profile-pic">
-                        <img src="\${profilePicPath}" alt="Hazem Ali Galal" onerror="this.src='/profile.png'">
+                        <img src="${profilePicPath}" alt="Hazem Ali Galal" onerror="this.src='/profile.png'">
                         <span class="wa-online-dot"></span>
                     </div>
                     <div class="wa-header-info">
