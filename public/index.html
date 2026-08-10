@@ -49,6 +49,43 @@
       gtag('config', 'AW-18137984256');
     </script>
     <script src="/js/language-detector.js"></script>
+
+<style>
+    .real-emoji-wrapper {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .expertise-icon-item:hover .real-emoji-wrapper {
+        transform: scale(1.15) translateY(-2px);
+    }
+    .real-emoji {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
+    }
+    .inline-emoji {
+        height: 1.2em;
+        width: 1.2em;
+        vertical-align: middle;
+        margin: 0 4px;
+        filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+    }
+    .large-inline-emoji {
+        height: 48px;
+        width: 48px;
+        vertical-align: middle;
+        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
+    }
+    /* Hide the old span if still around */
+    .expertise-icon-item span.icon { display: none; }
+</style>
+
 </head>
 
 <body>
@@ -329,45 +366,45 @@
 
 			<div class="expertise-icons">
 				<a href="service-form.html?service=ecommerce" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🛒</span><span>E-Commerce</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f6d2.png" alt="🛒" class="real-emoji"></div><span>E-Commerce</span></a>
 				<a href="service-form.html?service=real-estate" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🏠</span><span>Real Estate</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f3e0.png" alt="🏠" class="real-emoji"></div><span>Real Estate</span></a>
 				<a href="service-form.html?service=saas" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">💻</span><span>SaaS</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4bb.png" alt="💻" class="real-emoji"></div><span>SaaS</span></a>
 				<a href="service-form.html?service=fashion" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">👗</span><span>Fashion</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f457.png" alt="👗" class="real-emoji"></div><span>Fashion</span></a>
 				<a href="service-form.html?service=health-beauty" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">💄</span><span>Health & Beauty</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f484.png" alt="💄" class="real-emoji"></div><span>Health & Beauty</span></a>
 				<a href="service-form.html?service=food-bev" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">🍽️</span><span>Food & Bev</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f37d.png" alt="🍽️" class="real-emoji"></div><span>Food & Bev</span></a>
 				<a href="service-form.html?service=education" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🎓</span><span>Education</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f393.png" alt="🎓" class="real-emoji"></div><span>Education</span></a>
 				<a href="service-form.html?service=medical-clinics" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🏥</span><span>Medical Clinics</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f3e5.png" alt="🏥" class="real-emoji"></div><span>Medical Clinics</span></a>
 				<a href="service-form.html?service=automotive" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🚗</span><span>Automotive</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f697.png" alt="🚗" class="real-emoji"></div><span>Automotive</span></a>
 				<a href="service-form.html?service=furniture" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">🛋️</span><span>Furniture</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f6cb.png" alt="🛋️" class="real-emoji"></div><span>Furniture</span></a>
 				<a href="service-form.html?service=perfumes" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">🧴</span><span>Perfumes</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f9f4.png" alt="🧴" class="real-emoji"></div><span>Perfumes</span></a>
 				<a href="service-form.html?service=medical" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">💊</span><span>Medical</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f48a.png" alt="💊" class="real-emoji"></div><span>Medical</span></a>
 				<a href="service-form.html?service=mobile-apps" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">📱</span><span>Mobile Apps</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4f1.png" alt="📱" class="real-emoji"></div><span>Mobile Apps</span></a>
 				<a href="service-form.html?service=luxury-brands" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">💎</span><span>Luxury Brands</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f48e.png" alt="💎" class="real-emoji"></div><span>Luxury Brands</span></a>
 				<a href="service-form.html?service=law-firms" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">⚖️</span><span>Law Firms</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2696.png" alt="⚖️" class="real-emoji"></div><span>Law Firms</span></a>
 				<a href="service-form.html?service=translation" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🌍</span><span>Translation</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f30d.png" alt="🌍" class="real-emoji"></div><span>Translation</span></a>
 				<a href="service-form.html?service=recruitment-cleaning" class="expertise-icon-item delay-1"
-					style="text-decoration:none;"><span class="icon">🧹</span><span>Recruitment & Cleaning</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f9f9.png" alt="🧹" class="real-emoji"></div><span>Recruitment & Cleaning</span></a>
 				<a href="service-form.html?service=consultation" class="expertise-icon-item delay-2"
-					style="text-decoration:none;"><span class="icon">💼</span><span>Consultation</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4bc.png" alt="💼" class="real-emoji"></div><span>Consultation</span></a>
 				<a href="service-form.html?service=landing-pages" class="expertise-icon-item delay-3"
-					style="text-decoration:none;"><span class="icon">📄</span><span>Landing Pages</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4c4.png" alt="📄" class="real-emoji"></div><span>Landing Pages</span></a>
 				<a href="service-form.html?service=digital-auditing" class="expertise-icon-item delay-4"
-					style="text-decoration:none;"><span class="icon">🔍</span><span>Digital Auditing</span></a>
+					style="text-decoration:none;"><div class="real-emoji-wrapper"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f50d.png" alt="🔍" class="real-emoji"></div><span>Digital Auditing</span></a>
 			</div>
 		</div>
 	</section>
@@ -427,7 +464,7 @@
 
 			<!-- Pshift Note -->
 			<div class="pshift-note reveal">
-				<div class="note-icon">💡</div>
+				<div class="note-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4a1.png" alt="💡" class="large-inline-emoji"></div>
 				<p><strong>ملحوظة:</strong> ليست لخدمتي قيمة مادية ثابتة أو محددة، حيث تختلف أهداف كل علامة تجارية عن
 					أخرى، لكن تعاقدك معي <strong>يشترط الوصول إلى نتائج تحسن من أرباحك</strong> (اسأل كيف! خلال الاجتماع
 					الذي ستقوم بحجزه).</p>
@@ -475,37 +512,37 @@
 
 				<!-- Card 1: Golden Guarantee -->
 				<div class="cro-miro-card reveal" style="--c: #f59e0b;">
-					<div class="cro-icon">💎</div>
+					<div class="cro-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f48e.png" alt="💎" class="large-inline-emoji"></div>
 					<h3>الضمان الذهبي (Zero Risk)</h3>
 					<p>أثق في استراتيجيتي لدرجة أنني أضعها في العقد: <strong>إذا لم نحقق لك العائد المتفق عليه (ROAS)،
 							أقوم برد أتعابي الإدارية لك بالكامل.</strong> مخاطرتك معي هي حرفياً "صفر".</p>
 
 					<div class="cro-sticky sticky-y" style="top:-30px; right:-30px; --r:3;">
-						💡 "الضمان ده بيخليك تستثمر وانت حاطط في بطنك بطيخة صيفي!"
+						<img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4a1.png" alt="💡" class="inline-emoji"> "الضمان ده بيخليك تستثمر وانت حاطط في بطنك بطيخة صيفي!"
 					</div>
 				</div>
 
 				<!-- Card 2: Total Transparency -->
 				<div class="cro-miro-card reveal delay-1" style="--c: #3b82f6; transform: translateY(40px);">
-					<div class="cro-icon">📊</div>
+					<div class="cro-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4ca.png" alt="📊" class="large-inline-emoji"></div>
 					<h3>شفافية تقنية مطلقة 100%</h3>
 					<p>لا يوجد تقارير مضروبة! ستحصل على <strong>لوحة تحكم حية (Live Dashboard)</strong> تربط نفقاتك
 						بمبيعاتك الفعلية، لتراقب مسار كل دولار وعائده المباشر لحظة بلحظة.</p>
 
 					<div class="cro-sticky sticky-b" style="bottom:-40px; left:-20px; --r:-4;">
-						📌 "الداتا قدام عينك 24/7، مفيش حاجة مستخبية."
+						<img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4cc.png" alt="📌" class="inline-emoji"> "الداتا قدام عينك 24/7، مفيش حاجة مستخبية."
 					</div>
 				</div>
 
 				<!-- Card 3: Growth Partner Model -->
 				<div class="cro-miro-card reveal delay-2" style="--c: #ec4899;">
-					<div class="cro-icon">🤝</div>
+					<div class="cro-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f91d.png" alt="🤝" class="large-inline-emoji"></div>
 					<h3>نموذج "شريك النمو"</h3>
 					<p>تخلص من الوكالات البطيئة! أنا أعمل معك كشريك نمو (Growth Partner). أدخل في تفاصيل مبيعاتك، أحلل
 						صفحات الهبوط، وأتدخل لرفع معدل التحويل (CRO).</p>
 
 					<div class="cro-sticky sticky-p" style="top:-20px; left:-40px; --r:-2;">
-						🔥 "شغال معاك كأني شريك في الشركة بالظبط!"
+						<img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f525.png" alt="🔥" class="inline-emoji"> "شغال معاك كأني شريك في الشركة بالظبط!"
 					</div>
 				</div>
 
@@ -515,7 +552,7 @@
 				<div
 					style="background: #fff; padding: 40px 20px; border-radius: 20px; border: 2px dashed #eb1751; box-shadow: 0 20px 40px rgba(235,23,81,0.1); max-width: 700px; margin: 0 auto; position:relative;">
 					<div class="cro-sticky sticky-g" style="top:-30px; right:20px; --r:4;">
-						☕ "خطوة صفر بدون مخاطرة!"
+						<img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2615.png" alt="☕" class="inline-emoji"> "خطوة صفر بدون مخاطرة!"
 					</div>
 					<h3 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 15px;">الخطوة الصفر:
 						الجلسة الاستكشافية المجانية</h3>
@@ -525,7 +562,7 @@
 					</p>
 					<a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="btn btn-primary"
 						style="font-size: 1.2rem; padding: 15px 40px; box-shadow: 0 10px 25px rgba(235, 23, 81, 0.3);">احجز
-						الجلسة المجانية الآن ☕</a>
+						الجلسة المجانية الآن <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2615.png" alt="☕" class="inline-emoji"></a>
 				</div>
 			</div>
 		</div>
