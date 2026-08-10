@@ -2156,3 +2156,44 @@ img, video, iframe, canvas, svg {
         overflow-wrap: break-word;
     }
 }
+
+/* Hero Platforms Logos */
+.hero-platforms {
+    margin: 1.5rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+.platforms-text {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+.platforms-logos {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+.platforms-logos img {
+    height: 24px;
+    width: auto;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.platforms-logos img:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+    .hero-platforms {
+        align-items: center;
+        margin: 1.5rem auto 2rem;
+    }
+    .platforms-logos {
+        justify-content: center;
+    }
+}
+
