@@ -2337,3 +2337,48 @@ img, video, iframe, canvas, svg {
     background: rgba(235, 23, 81, 0.05);
     color: var(--primary);
 }
+
+/* Standard Form Styling (Form Groups & Controls) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    animation: formFadeIn 0.5s ease forwards;
+}
+.form-group label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+.form-control {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    background: #fdfdfd;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s;
+    outline: none;
+    box-sizing: border-box;
+    color: var(--text-dark);
+}
+.form-control::placeholder {
+    color: #999;
+}
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(235, 23, 81, 0.1);
+    background: #fff;
+}
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
