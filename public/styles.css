@@ -476,7 +476,7 @@ img {
 }
 
 .shape-2 {
-    width: 160px;
+    width: clamp(140px, 45%, 160px);
     height: 160px;
     opacity: 0.25;
     animation: spin 12s linear infinite reverse;
@@ -729,7 +729,7 @@ img {
     background: #ffffff;
     border-radius: var(--radius);
     border: 1px solid #e5e7eb;
-    width: 160px;
+    width: clamp(140px, 45%, 160px);
     min-height: 180px;
     text-align: center;
     font-size: 0.85rem;
@@ -2412,4 +2412,16 @@ img, video, iframe, canvas, svg {
     width: 40px;
     height: 40px;
     stroke-width: 3;
+}
+
+/* Responsive Contact Form Grid */
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+@media (max-width: 768px) {
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+    }
 }
