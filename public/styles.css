@@ -2183,7 +2183,6 @@ img, video, iframe, canvas, svg {
     cursor: pointer;
 }
 .platforms-logos svg#icon-meta { fill: #0668E1; }
-.platforms-logos svg#icon-googleads { fill: #F4B400; }
 .platforms-logos svg#icon-snapchat { fill: #FFCC00; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); } /* slightly darker yellow for visibility */
 .platforms-logos svg#icon-tiktok { fill: #000000; }
 .platforms-logos svg#icon-shopify { fill: #96BF48; }
