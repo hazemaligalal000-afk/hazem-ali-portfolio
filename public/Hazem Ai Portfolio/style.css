@@ -1836,16 +1836,24 @@ footer {
 }
 
 .why-icon {
-    font-size: 2.75rem;
-    margin-bottom: 1.25rem;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: rgba(235, 23, 81, 0.08);
+    color: var(--clr-purple);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     z-index: 2;
-    display: inline-block;
 }
 
 .why-card:hover .why-icon {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.1) translateY(-5px);
+    background: rgba(235, 23, 81, 0.12);
+    box-shadow: 0 10px 25px -5px rgba(235, 23, 81, 0.2);
 }
 
 .why-card h4 {
