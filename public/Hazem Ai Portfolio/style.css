@@ -1706,22 +1706,78 @@ footer {
 }
 
 .brand-logo-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    padding: 1rem 0.5rem;
-    color: var(--text-secondary);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: grayscale(100%) opacity(0.6);
+    user-select: none;
+    cursor: default;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .brand-logo-card:hover {
-    border-color: var(--glass-border-hover);
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    transform: scale(1.03);
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.08);
+}
+
+/* Specific Typographic Logos */
+.brand-fitneeds {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    color: #FF4500; /* Energetic Orange */
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+.brand-fitneeds::after {
+    content: '.';
+    color: #1E90FF;
+}
+
+.brand-kesraa {
+    font-family: 'Times New Roman', serif;
+    font-weight: 400;
+    color: #D4AF37; /* Gold */
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
+.brand-dolt {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    color: #2b2b2b;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+}
+
+.brand-anetos {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: #663399; /* Indigo/Purple */
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.brand-steelixe {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #4682B4; /* Steel Blue */
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.brand-noyah {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #556B2F; /* Olive Green */
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
 }
 
 /* Why Hazem Section */
