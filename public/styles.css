@@ -2204,6 +2204,7 @@ img, video, iframe, canvas, svg {
 }
 
 
+
 /* Premium Native Emoji Styles */
 .premium-emoji-wrapper {
     width: 70px;
@@ -2247,18 +2248,20 @@ img, video, iframe, canvas, svg {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 15px;
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius);
+    padding: 16px;
+    border: 2px solid #eee;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: white;
+    background: #fdfdfd;
     font-size: 1rem;
     font-weight: 500;
+    color: var(--text-dark);
 }
 .radio-option:hover, .checkbox-option:hover {
-    border-color: rgba(235, 23, 81, 0.5);
-    background: rgba(235, 23, 81, 0.02);
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(235, 23, 81, 0.05);
 }
 .radio-option input[type="radio"], .checkbox-option input[type="checkbox"] {
     width: 20px;
@@ -2267,6 +2270,8 @@ img, video, iframe, canvas, svg {
     cursor: pointer;
 }
 
+
+
 /* Custom Dropdown Styles for Logic Questions */
 .custom-dropdown-wrap {
     position: relative;
@@ -2274,13 +2279,14 @@ img, video, iframe, canvas, svg {
 }
 .custom-dropdown-btn {
     width: 100%;
-    padding: 15px;
-    background: #fff;
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius);
+    padding: 16px;
+    background: #fdfdfd;
+    border: 2px solid #eee;
+    border-radius: 12px;
     text-align: right;
     font-size: 1rem;
     font-family: inherit;
+    color: var(--text-dark);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -2289,6 +2295,8 @@ img, video, iframe, canvas, svg {
 }
 .custom-dropdown-btn:hover, .custom-dropdown-btn.open {
     border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(235, 23, 81, 0.05);
 }
 .custom-dropdown-btn::after {
     content: '▼';
@@ -2305,8 +2313,8 @@ img, video, iframe, canvas, svg {
     left: 0;
     right: 0;
     background: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
+    border: 1px solid #eee;
+    border-radius: 12px;
     margin-top: 5px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     z-index: 1000;
@@ -2325,18 +2333,22 @@ img, video, iframe, canvas, svg {
     transform: translateY(0);
 }
 .custom-dropdown-item {
-    padding: 12px 15px;
+    padding: 14px 16px;
     cursor: pointer;
-    transition: background 0.2s ease;
-    border-bottom: 1px solid #f1f1f1;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f9f9f9;
+    color: var(--text-dark);
+    font-size: 0.95rem;
 }
 .custom-dropdown-item:last-child {
     border-bottom: none;
 }
-.custom-dropdown-item:hover {
-    background: rgba(235, 23, 81, 0.05);
+.custom-dropdown-item:hover, .custom-dropdown-item.selected {
+    background: rgba(235, 23, 81, 0.04);
     color: var(--primary);
+    padding-right: 24px;
 }
+
 
 /* Standard Form Styling (Form Groups & Controls) */
 .form-group {
