@@ -1711,9 +1711,9 @@ footer {
     justify-content: center;
     height: 60px;
     padding: 0.5rem 1.5rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: grayscale(100%) opacity(0.6);
+    filter: opacity(0.85); /* Removed grayscale to show real colors */
     user-select: none;
     cursor: default;
     background: transparent;
@@ -1722,7 +1722,7 @@ footer {
 }
 
 .brand-logo-card:hover {
-    filter: grayscale(0%) opacity(1);
+    filter: opacity(1);
     transform: scale(1.08);
 }
 
@@ -1731,19 +1731,19 @@ footer {
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     font-style: italic;
-    color: #FF7A45; /* Bright Orange */
+    color: #e65100;
     text-transform: uppercase;
     letter-spacing: -1px;
 }
 .brand-fitneeds::after {
     content: '.';
-    color: #38BDF8; /* Bright Blue */
+    color: #0284c7;
 }
 
 .brand-kesraa {
     font-family: 'Times New Roman', serif;
     font-weight: 400;
-    color: #FBBF24; /* Bright Gold */
+    color: #b45309;
     text-transform: capitalize;
     letter-spacing: 2px;
 }
@@ -1751,7 +1751,7 @@ footer {
 .brand-dolt {
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    color: #F8FAFC; /* White/Light Slate */
+    color: #0f172a;
     text-transform: uppercase;
     letter-spacing: -1.5px;
 }
@@ -1759,23 +1759,23 @@ footer {
 .brand-anetos {
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
-    color: #C084FC; /* Bright Purple */
+    color: #7e22ce;
     text-transform: uppercase;
     letter-spacing: 5px;
 }
 
 .brand-steelixe {
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #7DD3FC; /* Bright Steel Blue */
+    font-weight: 800;
+    color: #0369a1;
     text-transform: uppercase;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+    letter-spacing: -0.5px;
 }
 
 .brand-noyah {
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
-    color: #A3E635; /* Bright Lime Green */
+    color: #4d7c0f;
     text-transform: lowercase;
     letter-spacing: 0.5px;
 }
