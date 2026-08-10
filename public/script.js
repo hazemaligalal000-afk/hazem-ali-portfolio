@@ -11,14 +11,15 @@
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Stagger siblings if possible
             try {
                 const siblings = Array.from(entry.target.parentElement.children);
                 const idx = siblings.indexOf(entry.target);
                 entry.target.style.transitionDelay = `${idx * 0.07}s`;
             } catch (e) { }
             entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
+        } else {
+            entry.target.classList.remove('visible');
+            entry.target.style.transitionDelay = '0s'; // Reset delay for snappy exit
         }
     });
 }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
