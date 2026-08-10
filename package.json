@@ -1,0 +1,46 @@
+{
+  "name": "hazem-galal-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio and lead management system for Hazem Ali Galal - Performance Marketing Expert",
+  "main": "server/app.js",
+  "scripts": {
+    "preinstall": "npm cache clean --force",
+    "start": "NODE_ENV=production node server/app.js",
+    "dev": "NODE_ENV=development node --watch server/app.js",
+    "db:seed": "node server/utils/seed.js",
+    "db:reset": "node server/utils/resetDb.js",
+    "deploy": "bash deploy.sh",
+    "deploy:win": "echo \"Please use Git Bash or WSL to run: bash deploy.sh\""
+  },
+  "keywords": [
+    "performance-marketing",
+    "portfolio",
+    "lead-management"
+  ],
+  "author": "Hazem Ali Galal",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0 <23.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.2.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.15",
+    "os-utils": "^0.0.14",
+    "path": "^0.12.7",
+    "uuid": "^10.0.0",
+    "winston": "^3.14.2"
+  }
+}

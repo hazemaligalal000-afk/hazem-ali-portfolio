@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TBV3M4R5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-TBV3M4R5');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منهجية العمل - Miro Board | Hazem Ali Galal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3">
+    
+    <style>
+        :root {
+            --bg-miro: #f4f5f9;
+            --dot-color: #cbd5e1;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --green: #10b981;
+            --orange: #f59e0b;
+            --red: #eb1751;
+            --yellow-sticky: #fef08a;
+            --blue-sticky: #bae6fd;
+            --green-sticky: #bbf7d0;
+            --pink-sticky: #fbcfe8;
+        }
+
+        body {
+            background-color: var(--bg-miro);
+            overflow-x: hidden;
+            margin: 0;
+            font-family: 'Almarai', sans-serif;
+        }
+
+        /* 1. Miro Board Background */
+        .miro-board {
+            background-image: radial-gradient(var(--dot-color) 2px, transparent 2px);
+            background-size: 40px 40px;
+            width: 100vw;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+            /* Drag illusion */
+            cursor: grab;
+            animation: panBackground 60s linear infinite alternate;
+        }
+
+        @keyframes panBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+
+        .miro-board:active {
+            cursor: grabbing;
+        }
+
+        /* Top Header */
+        .miro-header-board {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 50;
+            animation: dropDown 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .miro-header-board h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: #0f172a;
+            font-weight: 800;
+            background: white;
+            display: inline-block;
+            padding: 15px 50px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 0 0 4px white, 0 0 0 6px var(--red);
+            transform: rotate(-1deg);
+        }
+
+        /* Animated Cursors */
+        .cursor {
+            position: absolute;
+            z-index: 100;
+            pointer-events: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            filter: drop-shadow(3px 5px 10px rgba(0,0,0,0.3));
+        }
+
+        .cursor svg { width: 30px; height: 30px; }
+        .cursor-tag {
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 100px;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .cursor-1 { animation: flyCursor1 15s infinite ease-in-out; }
+        .cursor-1 svg { fill: var(--red); }
+        .cursor-1 .cursor-tag { background: var(--red); }
+
+        .cursor-2 { animation: flyCursor2 22s infinite ease-in-out; }
+        .cursor-2 svg { fill: var(--blue); }
+        .cursor-2 .cursor-tag { background: var(--blue); }
+
+        .cursor-3 { animation: flyCursor3 18s infinite ease-in-out; }
+        .cursor-3 svg { fill: var(--green); }
+        .cursor-3 .cursor-tag { background: var(--green); }
+
+        @keyframes flyCursor1 {
+            0% { top: 5%; left: 90%; }
+            25% { top: 40%; left: 60%; }
+            50% { top: 80%; left: 30%; }
+            75% { top: 30%; left: 20%; }
+            100% { top: 5%; left: 90%; }
+        }
+        @keyframes flyCursor2 {
+            0% { top: 80%; left: 10%; }
+            30% { top: 20%; left: 40%; }
+            60% { top: 60%; left: 80%; }
+            100% { top: 80%; left: 10%; }
+        }
+        @keyframes flyCursor3 {
+            0% { top: 10%; left: 10%; }
+            40% { top: 90%; left: 50%; }
+            80% { top: 50%; left: 90%; }
+            100% { top: 10%; left: 10%; }
+        }
+
+        /* 2. Map Layout Container */
+        .miro-map {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .map-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            position: relative;
+        }
+
+        .map-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* 3. The Node Cards (Frames) */
+        .miro-frame {
+            background: white;
+            width: 420px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05), inset 0 0 0 1px #e2e8f0;
+            padding: 40px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: popIn 0.8s backwards;
+            z-index: 5;
+        }
+
+        .miro-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--color);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .miro-frame:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15), 0 0 0 2px var(--color);
+            z-index: 20;
+        }
+
+        .frame-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .frame-icon {
+            width: 60px; height: 60px;
+            border-radius: 12px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+        }
+
+        .frame-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .frame-body {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* 4. Sticky Notes - Professional & Realistic */
+        .sticky {
+            position: absolute;
+            width: 230px;
+            padding: 25px 20px 20px;
+            box-shadow: 2px 6px 15px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.5);
+            font-family: 'Almarai', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1e293b;
+            z-index: 10;
+            transition: all 0.4s ease;
+            animation: float 6s infinite ease-in-out;
+            cursor: pointer;
+            border-bottom-right-radius: 20px 4px;
+            background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+            background-size: 100% 20px;
+        }
+
+        /* Tape at the top of the sticky */
+        .sticky::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 70px;
+            height: 25px;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            backdrop-filter: blur(2px);
+        }
+
+        .sticky:hover {
+            transform: scale(1.08) rotate(0deg) !important;
+            z-index: 30;
+            box-shadow: 5px 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .s-yellow { background-color: var(--yellow-sticky); }
+        .s-blue { background-color: var(--blue-sticky); }
+        .s-green { background-color: var(--green-sticky); }
+        .s-pink { background-color: var(--pink-sticky); }
+
+        /* Positioning stickies realistically around frames */
+        .s-pos-1 { top: -30px; right: -40px; --r: 2; }
+        .s-pos-2 { bottom: -20px; left: -30px; --r: -3; }
+        .s-pos-3 { top: 30%; right: -60px; --r: 4; }
+        .s-pos-4 { top: -40px; left: 10px; --r: -2; }
+        
+        /* 5. SVG Connections (Desktop) */
+        .svg-connector {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            overflow: visible;
+            filter: drop-shadow(0 0 4px rgba(148, 163, 184, 0.4));
+        }
+
+        .svg-path {
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 4;
+            stroke-dasharray: 8 8;
+            stroke-linecap: round;
+            animation: dashFlow 15s linear infinite;
+        }
+
+        .svg-arrow {
+            fill: #94a3b8;
+        }
+
+        /* Decorative "Drawn" Circles */
+        .drawn-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 4px solid var(--red);
+            border-radius: 50% 40% 60% 50% / 50% 50% 60% 40%;
+            animation: morphCircle 3s linear infinite alternate;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .c-pos-1 { top: -20px; left: -20px; }
+        .c-pos-2 { bottom: -20px; right: -20px; border-color: var(--blue); }
+
+        /* Animations */
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(50px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(calc(var(--r) * 1deg)); }
+            50% { transform: translateY(-10px) rotate(calc(var(--r) * 1deg)); }
+            100% { transform: translateY(0px) rotate(calc(var(--r) * 1deg)); }
+        }
+
+        @keyframes dashFlow {
+            to { stroke-dashoffset: -500; }
+        }
+
+        @keyframes morphCircle {
+            0% { border-radius: 50% 40% 60% 50% / 50% 50% 60% 40%; }
+            100% { border-radius: 40% 60% 40% 60% / 60% 40% 50% 50%; }
+        }
+
+        @keyframes dropDown {
+            0% { transform: translateY(-100px) rotate(5deg); opacity: 0; }
+            100% { transform: translateY(0) rotate(-1deg); opacity: 1; }
+        }
+
+        /* 6. Mobile & Tablet Responsiveness */
+        @media screen and (max-width: 1200px) {
+            .miro-frame { width: 350px; }
+            .map-row { gap: 40px; }
+        }
+
+        @media screen and (max-width: 992px) {
+            .map-row { flex-direction: column !important; gap: 80px; }
+            .svg-connector { display: none; } /* Hide complex lines on mobile */
+            .miro-frame { width: 100%; max-width: 500px; }
+            
+            /* Create a simple vertical dashed line for mobile */
+            .miro-map::before {
+                content: '';
+                position: absolute;
+                top: 0; bottom: 0; left: 50%;
+                width: 4px;
+                border-left: 4px dashed #cbd5e1;
+                z-index: 0;
+            }
+            .sticky {
+                width: 180px;
+                font-size: 0.85rem;
+            }
+            .s-pos-1 { right: -10px; top: -30px; }
+            .s-pos-2 { left: -10px; bottom: -30px; }
+            .s-pos-3 { right: -10px; top: -30px; }
+            .s-pos-4 { left: -10px; top: -30px; }
+        }
+
+        @media screen and (max-width: 600px) {
+            .miro-header-board h1 { font-size: 1.8rem; padding: 15px 20px; }
+            .miro-board { padding: 50px 0; }
+            .miro-frame { padding: 25px; }
+            .frame-icon { width: 50px; height: 50px; font-size: 1.5rem; }
+            .frame-title { font-size: 1.3rem; }
+            .sticky { display: none; } /* Hide stickies on very small screens for clean UI, or put them inline */
+            .miro-map::before { left: 30px; }
+        }
+    </style>
+
+    
+    <!-- Snap Pixel Code -->
+    <script type='text/javascript'>
+    (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+    {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+    a.queue=[];var s='script',r=t.createElement(s);r.async=!0;
+    r.src=n;var u=t.getElementsByTagName(s)[0];
+    u.parentNode.insertBefore(r,u);
+    })(window,document,'https://sc-static.net/scevent.min.js');
+    snaptr('init', '5839ab52-f90c-4fc9-9967-17bcb35833ea', {
+        'user_email': ''
+    });
+    snaptr('track', 'PAGE_VIEW');
+    </script>
+    <!-- End Snap Pixel Code -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18137984256"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18137984256');
+    </script>
+    <script src="/js/language-detector.js"></script>
+</head>
+<body>
+
+
+
+
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="topbar" id="topbar" style="position: relative; z-index: 1000; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+                <li><a href="about.html" data-i18n="nav_about">من أنا</a></li>
+                <li><a href="case-studies.html" data-i18n="nav_cases">قصص النجاح</a></li>
+                <li><a href="/Hazem Ai Portfolio/index.html" target="_blank">معرض أعمالي</a></li>
+                <li><a href="workflow.html" class="active">منهجية العمل</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
+            
+				<li class="mobile-only-cta" style="display:none; margin-top:20px;"><span class="desktop-cta-item"><a href="#" class="nav-cta hire-me-trigger" style="background:#0f172a; width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">اطلب العمل معي</a></span></li>
+				<li class="mobile-only-cta" style="display:none;"><span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta" data-i18n="btn_book_call" style="width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">احجز موعد للتواصل</a></span></li>
+			</ul>
+            <div style="display:flex;align-items:center;gap:16px;">
+				
+
+                <span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta" data-i18n="btn_book_call">احجز موعد للتواصل</a></span>
+                <button class="mobile-btn" id="mobile-btn" aria-label="القائمة">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MIRO BOARD CANVAS -->
+    <div class="miro-board">
+
+        <!-- Animated Cursors -->
+        <div class="cursor cursor-1">
+            <svg viewBox="0 0 320 512"><path d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z"/></svg>
+            <div class="cursor-tag">Hazem Ali</div>
+        </div>
+        <div class="cursor cursor-2">
+            <svg viewBox="0 0 320 512"><path d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z"/></svg>
+            <div class="cursor-tag">CEO (Client)</div>
+        </div>
+        <div class="cursor cursor-3">
+            <svg viewBox="0 0 320 512"><path d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z"/></svg>
+            <div class="cursor-tag">Media Buyer</div>
+        </div>
+
+        <div class="miro-header-board">
+            <h1>كيف تُدار الإمبراطورية؟ ♟️</h1>
+            <p style="margin-top:15px; font-weight:bold; color:#475569;">وراء كل حملة ناجحة، هندسة بيانات معقدة. اكتشف ال Workflow الخاص بي.</p>
+        </div>
+
+        <div class="miro-map">
+            
+            <!-- ROW 1 -->
+            <div class="map-row" style="animation-delay: 0.1s;">
+                <!-- Frame 0 -->
+                <div class="miro-frame" style="--color: var(--blue);">
+                    <div class="drawn-circle c-pos-1"></div>
+                    <div class="frame-header">
+                        <div class="frame-icon">☕</div>
+                        <div class="frame-title">0. فك الشفرة (الجلسة المجانية)</div>
+                    </div>
+                    <div class="frame-body">
+                        ندخل حساباتك الإعلانية معاً لمدة 45 دقيقة مجاناً وبدون مخاطرة. نشخص النزيف المالي، ونكتشف الفرص المهدرة. إذا شعرت أني لم أضف لك قيمة، ننهي المكالمة.
+                    </div>
+                    <div class="sticky s-yellow s-pos-1">
+                        💡 "الجلسة دي عشان أثبتلك بالدليل القاطع على حسابك إنك بتخسر فلوس، مش مجرد كلام بيع!"
+                    </div>
+                </div>
+
+                <!-- SVG curved arrow to next frame (Desktop only) -->
+                <svg class="svg-connector" width="200" height="100" style="right: 50%; transform: translateX(50%); top: 50px;">
+                    <path class="svg-path" d="M 0,50 Q 100,50 200,50" />
+                    <polygon class="svg-arrow" points="190,40 200,50 190,60" />
+                </svg>
+
+                <!-- Frame 1 -->
+                <div class="miro-frame" style="--color: var(--purple);">
+                    <div class="frame-header">
+                        <div class="frame-icon">🧠</div>
+                        <div class="frame-title">1. التأهيل عبر ال Logic Forms</div>
+                    </div>
+                    <div class="frame-body">
+                        أعطني داتا عميلك، أعطيك مبيعات. أقوم ببناء رحلة عميل (Buyer Journey) وفورم أسئلة ذكية تفلتر العميل الجاد من المتردد بناءً على نوع ال Business الخاص بك بدقة الجراح.
+                    </div>
+                    <div class="sticky s-blue s-pos-2">
+                        📌 "أسئلة الفورم بتلعب على علم النفس السلوكي للعميل، فبيحس إنك الوحيد اللي فاهمه."
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2 -->
+            <div class="map-row" style="animation-delay: 0.3s;">
+                <!-- SVG connecting from Row 1 to Row 2 -->
+                <svg class="svg-connector" width="400" height="200" style="left: 0; top: -120px;">
+                    <path class="svg-path" d="M 300,0 C 400,0 400,150 100,150" />
+                    <polygon class="svg-arrow" points="110,140 100,150 110,160" />
+                </svg>
+
+                <!-- Frame 2 -->
+                <div class="miro-frame" style="--color: var(--pink);">
+                    <div class="drawn-circle c-pos-2"></div>
+                    <div class="frame-header">
+                        <div class="frame-icon">📊</div>
+                        <div class="frame-title">2. التتبع وال Live Dashboard</div>
+                    </div>
+                    <div class="frame-body">
+                        تأسيس كامل لل Server-side Tracking، Pixel، CAPI وال Offline Conversions. أضع بين يديك Dashboard حية لتتابع مسار كل دولار يُنفق وعائده المباشر بشفافية مطلقة 100%.
+                    </div>
+                    <div class="sticky s-green s-pos-4">
+                        🔥 "العميل بيشوف تقرير حي 24/7.. مفيش تقارير مضروبة، الداتا مش بتكدب!"
+                    </div>
+                </div>
+
+                <svg class="svg-connector" width="200" height="100" style="right: 50%; transform: translateX(50%); top: 50px;">
+                    <path class="svg-path" d="M 200,50 Q 100,50 0,50" />
+                    <polygon class="svg-arrow" points="10,40 0,50 10,60" />
+                </svg>
+
+                <!-- Frame 3 -->
+                <div class="miro-frame" style="--color: var(--green);">
+                    <div class="frame-header">
+                        <div class="frame-icon">🕸️</div>
+                        <div class="frame-title">3. النظام الإعلاني (Omnichannel)</div>
+                    </div>
+                    <div class="frame-body">
+                        المبيعات لا تأتي من منصة واحدة. أبني لك إيكوسيستم: إعلانات جوجل لقطف الثمار الناضجة، تيك توك وسناب للانتشار، وميتا (فيسبوك/انستجرام) لإعادة الاستهداف الشرس.
+                    </div>
+                    <div class="sticky s-pink s-pos-3">
+                        📈 "العميل بيفتح تيك توك يلاقيك، جوجل يلاقيك.. فبتتبني Authority عملاقة للمركز/للمتجر."
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3 -->
+            <div class="map-row" style="animation-delay: 0.5s;">
+                
+                <svg class="svg-connector" width="400" height="200" style="right: 0; top: -120px;">
+                    <path class="svg-path" d="M 100,0 C 0,0 0,150 300,150" />
+                    <polygon class="svg-arrow" points="290,140 300,150 290,160" />
+                </svg>
+
+                <!-- Frame 4 -->
+                <div class="miro-frame" style="--color: var(--orange);">
+                    <div class="frame-header">
+                        <div class="frame-icon">🔥</div>
+                        <div class="frame-title">4. الإطلاق والتوسع الشرس</div>
+                    </div>
+                    <div class="frame-body">
+                        نطلق ال A/B Testing بهدوء. بمجرد أن نصل لمعادلة الإعلان الرابح والـ ROAS المستهدف، نقوم بعملية Scaling (توسع) جنونية لمضاعفة الأرباح بقوة وسرعة دون كسر الخوارزمية.
+                    </div>
+                    <div class="sticky s-yellow s-pos-1">
+                        🎯 "التوسع مبني على الداتا، مش بنزود البادجت عشوائي.. بنضخ فلوس في الكسبان بس!"
+                    </div>
+                </div>
+
+                <svg class="svg-connector" width="200" height="100" style="right: 50%; transform: translateX(50%); top: 50px;">
+                    <path class="svg-path" d="M 0,50 Q 100,50 200,50" />
+                    <polygon class="svg-arrow" points="190,40 200,50 190,60" />
+                </svg>
+
+                <!-- Frame 5 -->
+                <div class="miro-frame" style="--color: var(--red);">
+                    <div class="drawn-circle c-pos-1" style="border-color: var(--yellow-sticky);"></div>
+                    <div class="frame-header">
+                        <div class="frame-icon">💎</div>
+                        <div class="frame-title">5. الضمان الذهبي والـ LTV</div>
+                    </div>
+                    <div class="frame-body">
+                        أهم خطوة. نضاعف قيمة العميل (LTV) ليعود للشراء. والأهم: <strong>الضمان الذهبي</strong>. إذا لم أحقق العائد المتفق عليه بالخطة، أقوم برد أتعابي الإدارية لك بالكامل بلا نقاش.
+                    </div>
+                    <div class="sticky s-blue s-pos-2">
+                        ⚖️ "الضمان ده معناه إني في نفس القارب معاك، لو إنت مكسبتش، أنا كمان مش هكسب!"
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center; margin-top: 100px; position: relative; z-index: 50; padding: 0 20px;">
+            <a href="https://calendly.com/hazemaligalal999/45min" target="_blank" style="background: var(--red); color: white; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 100px; text-decoration: none; display: inline-block; box-shadow: 0 15px 30px rgba(235, 23, 81, 0.3); transition: transform 0.3s; animation: popIn 1s forwards; animation-delay: 1s; opacity:0;">
+                استثمر 45 دقيقة قد تغير مسار عملك 👇
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        // Script for mobile menu
+        const mobileBtn = document.getElementById('mobile-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const navOverlay = document.getElementById('nav-overlay');
+
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+            });
+            navOverlay.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navOverlay.classList.remove('active');
+            });
+        }
+    </script>
+
+    <script src="whatsapp-widget.js?v=4"></script>
+
+    <script src="telegram-widget.js?v=4"></script>
+
+    </body>
+</html>
