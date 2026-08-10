@@ -2176,17 +2176,18 @@ img, video, iframe, canvas, svg {
     gap: 1.2rem;
     flex-wrap: wrap;
 }
-.platforms-logos img {
-    height: 24px;
+.platforms-logos svg.platform-icon {
+    height: 28px;
     width: auto;
-    filter: grayscale(100%) opacity(0.6);
-    transition: all 0.3s ease;
+    fill: #6b7280;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
-.platforms-logos img:hover {
-    filter: grayscale(0%) opacity(1);
-    transform: translateY(-2px);
-}
+.platforms-logos svg#icon-meta:hover { fill: #0668E1; transform: translateY(-4px) scale(1.1); }
+.platforms-logos svg#icon-googleads:hover { fill: #F4B400; transform: translateY(-4px) scale(1.1); }
+.platforms-logos svg#icon-snapchat:hover { fill: #FFFC00; transform: translateY(-4px) scale(1.1); drop-shadow: 0 4px 6px rgba(255, 252, 0, 0.3); }
+.platforms-logos svg#icon-tiktok:hover { fill: #000000; transform: translateY(-4px) scale(1.1); }
+.platforms-logos svg#icon-shopify:hover { fill: #96BF48; transform: translateY(-4px) scale(1.1); }
 @media (max-width: 768px) {
     .hero-platforms {
         align-items: center;
