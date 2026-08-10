@@ -135,13 +135,13 @@
                         placeholder="أدخل اسمك الكريم" data-i18n-placeholder="form_placeholder_name">
                 </div>
 
-                <div class="form-group" style="animation-delay: 0.2s">
+                <div class="form-group" id="group_email" style="display:none; animation-delay: 0.2s">
                     <label for="email">البريد الإلكتروني <span style="color:var(--primary)">*</span></label>
                     <input type="email" id="email" name="email" class="form-control" required
                         placeholder="example@domain.com">
                 </div>
 
-                <div class="form-group" style="animation-delay: 0.3s">
+                <div class="form-group" id="group_budget" style="display:none; animation-delay: 0.3s">
                     <label for="budget">الميزانية المتوقعة للخدمة (دولار/ريال) <span
                             style="color:var(--primary)">*</span></label>
                     <input type="text" id="budget" name="budget" class="form-control" required
@@ -708,24 +708,59 @@
                 }
             }
 
-            // Start by capturing Basic Form Interactions to trigger the first dynamic question
-            const fundamentalInputs = ['fullName', 'email', 'budget'];
-            fundamentalInputs.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.addEventListener('blur', () => {
-                        const allFilled = fundamentalInputs.every(fid => document.getElementById(fid).value.trim() !== '');
-                        if (allFilled && Object.keys(answers).length === 0) {
+            // Step-by-Step Logic for Basic Form Inputs
+            const nameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('email');
+            const budgetInput = document.getElementById('budget');
+            
+            const groupEmail = document.getElementById('group_email');
+            const groupBudget = document.getElementById('group_budget');
+            
+            let nameDone = false;
+            let emailDone = false;
+            let budgetDone = false;
+
+            if(nameInput) {
+                nameInput.addEventListener('blur', (e) => {
+                    if (e.target.value.trim().length >= 2 && !nameDone) {
+                        nameDone = true;
+                        groupEmail.style.display = 'flex';
+                        setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 100);
+                    }
+                });
+            }
+
+            if(emailInput) {
+                emailInput.addEventListener('blur', (e) => {
+                    const val = e.target.value.trim();
+                    if (val.includes('@') && val.includes('.') && !emailDone) {
+                        emailDone = true;
+                        groupBudget.style.display = 'flex';
+                        setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 100);
+                    }
+                });
+            }
+
+            if(budgetInput) {
+                budgetInput.addEventListener('blur', (e) => {
+                    if (e.target.value.trim().length >= 2 && !budgetDone) {
+                        budgetDone = true;
+                        if (Object.keys(answers).length === 0) {
                             renderNextQuestion();
                         }
-                    });
-                }
-            });
-
-            // Or force the first question to appear immediately for better UX
-            setTimeout(() => {
-                renderNextQuestion();
-            }, 600);
+                    }
+                });
+                
+                // For pressing enter
+                budgetInput.addEventListener('change', (e) => {
+                    if (e.target.value.trim().length >= 2 && !budgetDone) {
+                        budgetDone = true;
+                        if (Object.keys(answers).length === 0) {
+                            renderNextQuestion();
+                        }
+                    }
+                });
+            }
 
         });
     </script>
