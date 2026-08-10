@@ -403,6 +403,43 @@
       gtag('config', 'AW-18137984256');
     </script>
     <script src="/js/language-detector.js"></script>
+
+<style>
+    .real-emoji-wrapper {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .expertise-icon-item:hover .real-emoji-wrapper {
+        transform: scale(1.15) translateY(-2px);
+    }
+    .real-emoji {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
+    }
+    .inline-emoji {
+        height: 1.2em;
+        width: 1.2em;
+        vertical-align: middle;
+        margin: 0 4px;
+        filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+    }
+    .large-inline-emoji {
+        height: 48px;
+        width: 48px;
+        vertical-align: middle;
+        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
+    }
+    /* Hide the old span if still around */
+    .expertise-icon-item span.icon { display: none; }
+</style>
+
 </head>
 <body>
 
@@ -459,7 +496,7 @@
         </div>
 
         <div class="miro-header-board">
-            <h1>كيف تُدار الإمبراطورية؟ ♟️</h1>
+            <h1>كيف تُدار الإمبراطورية؟ <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/265f.png" alt="♟️" class="inline-emoji"></h1>
             <p style="margin-top:15px; font-weight:bold; color:#475569;">وراء كل حملة ناجحة، هندسة بيانات معقدة. اكتشف ال Workflow الخاص بي.</p>
         </div>
 
@@ -471,14 +508,14 @@
                 <div class="miro-frame" style="--color: var(--blue);">
                     <div class="drawn-circle c-pos-1"></div>
                     <div class="frame-header">
-                        <div class="frame-icon">☕</div>
+                        <div class="frame-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2615.png" alt="☕" class="large-inline-emoji"></div>
                         <div class="frame-title">0. فك الشفرة (الجلسة المجانية)</div>
                     </div>
                     <div class="frame-body">
                         ندخل حساباتك الإعلانية معاً لمدة 45 دقيقة مجاناً وبدون مخاطرة. نشخص النزيف المالي، ونكتشف الفرص المهدرة. إذا شعرت أني لم أضف لك قيمة، ننهي المكالمة.
                     </div>
                     <div class="sticky s-yellow s-pos-1">
-                        💡 "الجلسة دي عشان أثبتلك بالدليل القاطع على حسابك إنك بتخسر فلوس، مش مجرد كلام بيع!"
+                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4a1.png" alt="💡" class="inline-emoji"> "الجلسة دي عشان أثبتلك بالدليل القاطع على حسابك إنك بتخسر فلوس، مش مجرد كلام بيع!"
                     </div>
                 </div>
 
@@ -491,14 +528,14 @@
                 <!-- Frame 1 -->
                 <div class="miro-frame" style="--color: var(--purple);">
                     <div class="frame-header">
-                        <div class="frame-icon">🧠</div>
+                        <div class="frame-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f9e0.png" alt="🧠" class="large-inline-emoji"></div>
                         <div class="frame-title">1. التأهيل عبر ال Logic Forms</div>
                     </div>
                     <div class="frame-body">
                         أعطني داتا عميلك، أعطيك مبيعات. أقوم ببناء رحلة عميل (Buyer Journey) وفورم أسئلة ذكية تفلتر العميل الجاد من المتردد بناءً على نوع ال Business الخاص بك بدقة الجراح.
                     </div>
                     <div class="sticky s-blue s-pos-2">
-                        📌 "أسئلة الفورم بتلعب على علم النفس السلوكي للعميل، فبيحس إنك الوحيد اللي فاهمه."
+                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4cc.png" alt="📌" class="inline-emoji"> "أسئلة الفورم بتلعب على علم النفس السلوكي للعميل، فبيحس إنك الوحيد اللي فاهمه."
                     </div>
                 </div>
             </div>
@@ -515,14 +552,14 @@
                 <div class="miro-frame" style="--color: var(--pink);">
                     <div class="drawn-circle c-pos-2"></div>
                     <div class="frame-header">
-                        <div class="frame-icon">📊</div>
+                        <div class="frame-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4ca.png" alt="📊" class="large-inline-emoji"></div>
                         <div class="frame-title">2. التتبع وال Live Dashboard</div>
                     </div>
                     <div class="frame-body">
                         تأسيس كامل لل Server-side Tracking، Pixel، CAPI وال Offline Conversions. أضع بين يديك Dashboard حية لتتابع مسار كل دولار يُنفق وعائده المباشر بشفافية مطلقة 100%.
                     </div>
                     <div class="sticky s-green s-pos-4">
-                        🔥 "العميل بيشوف تقرير حي 24/7.. مفيش تقارير مضروبة، الداتا مش بتكدب!"
+                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f525.png" alt="🔥" class="inline-emoji"> "العميل بيشوف تقرير حي 24/7.. مفيش تقارير مضروبة، الداتا مش بتكدب!"
                     </div>
                 </div>
 
@@ -534,14 +571,14 @@
                 <!-- Frame 3 -->
                 <div class="miro-frame" style="--color: var(--green);">
                     <div class="frame-header">
-                        <div class="frame-icon">🕸️</div>
+                        <div class="frame-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f578.png" alt="🕸️" class="large-inline-emoji"></div>
                         <div class="frame-title">3. النظام الإعلاني (Omnichannel)</div>
                     </div>
                     <div class="frame-body">
                         المبيعات لا تأتي من منصة واحدة. أبني لك إيكوسيستم: إعلانات جوجل لقطف الثمار الناضجة، تيك توك وسناب للانتشار، وميتا (فيسبوك/انستجرام) لإعادة الاستهداف الشرس.
                     </div>
                     <div class="sticky s-pink s-pos-3">
-                        📈 "العميل بيفتح تيك توك يلاقيك، جوجل يلاقيك.. فبتتبني Authority عملاقة للمركز/للمتجر."
+                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4c8.png" alt="📈" class="inline-emoji"> "العميل بيفتح تيك توك يلاقيك، جوجل يلاقيك.. فبتتبني Authority عملاقة للمركز/للمتجر."
                     </div>
                 </div>
             </div>
@@ -557,14 +594,14 @@
                 <!-- Frame 4 -->
                 <div class="miro-frame" style="--color: var(--orange);">
                     <div class="frame-header">
-                        <div class="frame-icon">🔥</div>
+                        <div class="frame-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f525.png" alt="🔥" class="large-inline-emoji"></div>
                         <div class="frame-title">4. الإطلاق والتوسع الشرس</div>
                     </div>
                     <div class="frame-body">
                         نطلق ال A/B Testing بهدوء. بمجرد أن نصل لمعادلة الإعلان الرابح والـ ROAS المستهدف، نقوم بعملية Scaling (توسع) جنونية لمضاعفة الأرباح بقوة وسرعة دون كسر الخوارزمية.
                     </div>
                     <div class="sticky s-yellow s-pos-1">
-                        🎯 "التوسع مبني على الداتا، مش بنزود البادجت عشوائي.. بنضخ فلوس في الكسبان بس!"
+                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f3af.png" alt="🎯" class="inline-emoji"> "التوسع مبني على الداتا، مش بنزود البادجت عشوائي.. بنضخ فلوس في الكسبان بس!"
                     </div>
                 </div>
 
@@ -577,14 +614,14 @@
                 <div class="miro-frame" style="--color: var(--red);">
                     <div class="drawn-circle c-pos-1" style="border-color: var(--yellow-sticky);"></div>
                     <div class="frame-header">
-                        <div class="frame-icon">💎</div>
+                        <div class="frame-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f48e.png" alt="💎" class="large-inline-emoji"></div>
                         <div class="frame-title">5. الضمان الذهبي والـ LTV</div>
                     </div>
                     <div class="frame-body">
                         أهم خطوة. نضاعف قيمة العميل (LTV) ليعود للشراء. والأهم: <strong>الضمان الذهبي</strong>. إذا لم أحقق العائد المتفق عليه بالخطة، أقوم برد أتعابي الإدارية لك بالكامل بلا نقاش.
                     </div>
                     <div class="sticky s-blue s-pos-2">
-                        ⚖️ "الضمان ده معناه إني في نفس القارب معاك، لو إنت مكسبتش، أنا كمان مش هكسب!"
+                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2696.png" alt="⚖️" class="inline-emoji"> "الضمان ده معناه إني في نفس القارب معاك، لو إنت مكسبتش، أنا كمان مش هكسب!"
                     </div>
                 </div>
             </div>
@@ -593,7 +630,7 @@
 
         <div style="text-align:center; margin-top: 100px; position: relative; z-index: 50; padding: 0 20px;">
             <a href="https://calendly.com/hazemaligalal999/45min" target="_blank" style="background: var(--red); color: white; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 100px; text-decoration: none; display: inline-block; box-shadow: 0 15px 30px rgba(235, 23, 81, 0.3); transition: transform 0.3s; animation: popIn 1s forwards; animation-delay: 1s; opacity:0;">
-                استثمر 45 دقيقة قد تغير مسار عملك 👇
+                استثمر 45 دقيقة قد تغير مسار عملك <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f447.png" alt="👇" class="inline-emoji">
             </a>
         </div>
 

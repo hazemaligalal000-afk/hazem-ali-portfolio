@@ -97,6 +97,43 @@
       gtag('config', 'AW-18137984256');
     </script>
     <script src="/js/language-detector.js"></script>
+
+<style>
+    .real-emoji-wrapper {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .expertise-icon-item:hover .real-emoji-wrapper {
+        transform: scale(1.15) translateY(-2px);
+    }
+    .real-emoji {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
+    }
+    .inline-emoji {
+        height: 1.2em;
+        width: 1.2em;
+        vertical-align: middle;
+        margin: 0 4px;
+        filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+    }
+    .large-inline-emoji {
+        height: 48px;
+        width: 48px;
+        vertical-align: middle;
+        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
+    }
+    /* Hide the old span if still around */
+    .expertise-icon-item span.icon { display: none; }
+</style>
+
 </head>
 
 <body>
@@ -341,17 +378,17 @@
 		<div class="container">
 			<div class="info-grid reveal">
 				<div class="info-box">
-					<div class="info-box-icon">📅</div>
+					<div class="info-box-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4c5.png" alt="📅" class="inline-emoji"></div>
 					<h3 data-i18n="info_box1_title">حجز موعد</h3>
 					<p data-i18n="info_box1_desc">احجز موعدك الآن عبر Calendly لمناقشة مشروعك في 45 دقيقة مجانية.</p>
 				</div>
 				<div class="info-box">
-					<div class="info-box-icon">📊</div>
+					<div class="info-box-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4ca.png" alt="📊" class="inline-emoji"></div>
 					<h3 data-i18n="info_box2_title">تحليل مجاني</h3>
 					<p data-i18n="info_box2_desc">أقدم تحليلاً مجانياً للحملات الإعلانية الحالية لتحديد نقاط الضعف والفرص.</p>
 				</div>
 				<div class="info-box">
-					<div class="info-box-icon">🚀</div>
+					<div class="info-box-icon"><img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f680.png" alt="🚀" class="inline-emoji"></div>
 					<h3 data-i18n="info_box3_title">نتائج مضمونة</h3>
 					<p data-i18n="info_box3_desc">تعاقدي يشترط الوصول إلى نتائج تحسن من أرباحك - ليس مجرد وعود.</p>
 				</div>
