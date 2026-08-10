@@ -2745,3 +2745,23 @@ img, video, iframe, canvas, svg {
         font-size: 0.85rem;
     }
 }
+
+/* Responsive Sticky Notes for Mobile */
+@media (max-width: 768px) {
+    .sticky {
+        width: 85% !important;
+        max-width: 240px;
+        font-size: 0.85rem;
+        padding: 12px;
+        z-index: 20; /* Ensure it stays above frame content */
+    }
+    /* Pull sticky notes inside the frame horizontally to prevent screen overflow */
+    .s-pos-1 { top: -15px !important; right: 10px !important; transform: rotate(3deg) !important; }
+    .s-pos-2 { bottom: -15px !important; left: 10px !important; transform: rotate(-3deg) !important; }
+    .s-pos-3 { top: auto !important; bottom: -20px !important; right: 10px !important; transform: rotate(2deg) !important; }
+    .s-pos-4 { bottom: -15px !important; right: 10px !important; transform: rotate(-2deg) !important; }
+    
+    .sticky:hover {
+        transform: scale(1.05) rotate(0deg) !important;
+    }
+}
