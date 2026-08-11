@@ -2359,10 +2359,19 @@ img, video, iframe, canvas, svg {
     margin-bottom: 24px;
     animation: formFadeIn 0.5s ease forwards;
 }
-.form-group label {
-    font-weight: 700;
-    font-size: 1rem;
+.form-group > label {
+    font-weight: 800;
+    font-size: 1.15rem;
     color: var(--text-dark);
+    background: rgba(235, 23, 81, 0.05); /* soft primary pink background */
+    padding: 12px 16px;
+    border-right: 4px solid var(--primary); /* right border for RTL */
+    border-radius: 8px;
+    display: inline-block; /* allows background to wrap nicely */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 5px; /* space between label and input */
+    line-height: 1.5;
 }
 .form-control {
     width: 100%;
