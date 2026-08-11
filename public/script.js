@@ -233,3 +233,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
+// ==========================================
+// GTM DataLayer Tracking (WhatsApp & Calendly)
+// ==========================================
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && link.href) {
+        if (link.href.includes('wa.me')) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'whatsapp_click',
+                'click_url': link.href
+            });
+            console.log('Tracked: whatsapp_click');
+        } else if (link.href.includes('calendly.com')) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'calendly_click',
+                'click_url': link.href
+            });
+            console.log('Tracked: calendly_click');
+        }
+    }
+});
