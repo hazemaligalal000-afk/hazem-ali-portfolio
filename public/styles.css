@@ -2686,11 +2686,11 @@ img, video, iframe, canvas, svg {
 .s-green { background: #bbf7d0; }
 .s-pink { background: #fbcfe8; }
 
-/* Sticky Positions */
-.s-pos-1 { top: -20px; right: -30px; transform: rotate(5deg); }
-.s-pos-2 { bottom: -30px; left: -20px; transform: rotate(-7deg); }
-.s-pos-3 { top: 40%; right: -40px; transform: rotate(3deg); }
-.s-pos-4 { bottom: -15px; right: -25px; transform: rotate(-4deg); }
+/* Sticky Positions (Moved further outward to avoid text overlap) */
+.s-pos-1 { top: -45px; right: -55px; transform: rotate(5deg); }
+.s-pos-2 { bottom: -55px; left: -45px; transform: rotate(-7deg); }
+.s-pos-3 { top: 35%; right: -65px; transform: rotate(3deg); }
+.s-pos-4 { bottom: -45px; right: -45px; transform: rotate(-4deg); }
 
 /* --- Hand-drawn Circles --- */
 .drawn-circle {
@@ -2766,11 +2766,11 @@ img, video, iframe, canvas, svg {
         border-radius: 50px !important;
         z-index: 20; /* Ensure it stays above frame content */
     }
-    /* Pull sticky notes inside the frame horizontally to prevent screen overflow */
-    .s-pos-1 { top: -15px !important; right: 10px !important; transform: rotate(3deg) !important; }
-    .s-pos-2 { bottom: -15px !important; left: 10px !important; transform: rotate(-3deg) !important; }
-    .s-pos-3 { top: auto !important; bottom: -20px !important; right: 10px !important; transform: rotate(2deg) !important; }
-    .s-pos-4 { bottom: -15px !important; right: 10px !important; transform: rotate(-2deg) !important; }
+    /* Push sticky notes vertically outward on mobile to avoid covering the text */
+    .s-pos-1 { top: -35px !important; right: -10px !important; transform: rotate(3deg) !important; }
+    .s-pos-2 { bottom: -45px !important; left: -10px !important; transform: rotate(-3deg) !important; }
+    .s-pos-3 { top: auto !important; bottom: -45px !important; right: -10px !important; transform: rotate(2deg) !important; }
+    .s-pos-4 { bottom: -45px !important; right: -10px !important; transform: rotate(-2deg) !important; }
     
     .sticky:hover {
         transform: scale(1.05) rotate(0deg) !important;
