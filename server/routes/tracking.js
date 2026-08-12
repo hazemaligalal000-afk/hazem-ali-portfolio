@@ -336,7 +336,8 @@ function mapToMetaEvent(eventName) {
         'Search': 'Search',
         'Subscribe': 'Subscribe',
         'WhatsAppClick': 'Contact',
-        'CalendlyClick': 'Schedule'
+        'CalendlyClick': 'Schedule',
+        'FormSubmission': 'Lead'
     };
     return map[eventName] || eventName;
 }
@@ -415,7 +416,8 @@ function mapToTikTokEvent(eventName) {
         'Search': 'Search',
         'Subscribe': 'Subscribe',
         'WhatsAppClick': 'Contact',
-        'CalendlyClick': 'Schedule'
+        'CalendlyClick': 'Schedule',
+        'FormSubmission': 'SubmitForm'
     };
     return map[eventName] || eventName;
 }
@@ -480,7 +482,8 @@ function mapToGA4Event(eventName) {
         'Search': 'search',
         'Subscribe': 'subscribe',
         'WhatsAppClick': 'contact',
-        'CalendlyClick': 'schedule'
+        'CalendlyClick': 'schedule',
+        'FormSubmission': 'generate_lead'
     };
     return map[eventName] || eventName;
 }
