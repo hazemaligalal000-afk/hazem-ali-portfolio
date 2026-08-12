@@ -133,7 +133,11 @@
                     'currency': 'EGP'
                 });
             } else if (eventName === 'CalendlyClick') {
-                window.gtag('event', 'book_appointment', { 'send_to': 'AW-18374660008' });
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-18374660008/XQZoCJKJz-AcEKif3LlE',
+                    'value': 1.0,
+                    'currency': 'EGP'
+                });
             } else if (eventName === 'ContactClick' || eventName === 'WhatsAppClick') {
                 window.gtag('event', 'conversion', {
                     'send_to': 'AW-18374660008/j-9ICJSe3eAcEKif3LlE',
