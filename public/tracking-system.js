@@ -101,20 +101,21 @@
      */
     function injectUTMsIntoForms() {
         const utms = getStoredUTMs();
-        if (Object.keys(utms).length === 0) return;
 
         const forms = document.querySelectorAll('form');
         forms.forEach(form => {
             // Avoid duplicate injection
             if (form.querySelector('input[name="utm_source"]')) return;
 
-            Object.entries(utms).forEach(([key, val]) => {
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = key;
-                hiddenInput.value = val;
-                form.appendChild(hiddenInput);
-            });
+            if (Object.keys(utms).length > 0) {
+                Object.entries(utms).forEach(([key, val]) => {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = key;
+                    hiddenInput.value = val;
+                    form.appendChild(hiddenInput);
+                });
+            }
 
             // Also track form submission
             form.addEventListener('submit', () => {
