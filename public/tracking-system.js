@@ -134,7 +134,11 @@
         // Trigger Google Ads (gtag) standard conversion events
         if (typeof window.gtag === 'function') {
             if (eventName === 'FormSubmission') {
-                window.gtag('event', 'generate_lead', { 'send_to': 'AW-18374660008' });
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-18374660008/mtG3CI2-3uAcEKif3LlE',
+                    'value': 1.0,
+                    'currency': 'EGP'
+                });
             } else if (eventName === 'CalendlyClick') {
                 window.gtag('event', 'book_appointment', { 'send_to': 'AW-18374660008' });
             } else if (eventName === 'WhatsAppClick') {
