@@ -404,7 +404,7 @@
                     });
 
                     // Send to Formspree for email notification as JSON
-                    const response = await fetch('/api/submit-form', {
+                    const response = await fetch('https://formspree.io/f/mdalpolb', {
                         method: 'POST',
                         body: JSON.stringify(jsonObject),
                         headers: {
