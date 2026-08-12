@@ -50,38 +50,27 @@
      */
     function updateWhatsAppLinks() {
         const utms = getStoredUTMs();
-        if (Object.keys(utms).length === 0) return;
+        const utmString = Object.keys(utms).length > 0 ? Object.entries(utms).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&') : '';
 
-        const utmString = Object.entries(utms)
-            .map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
-            .join('&');
-
-        const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]');
+        const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"], a[href*="t.me"]');
         whatsappLinks.forEach(link => {
             let href = link.getAttribute('href');
 
-            // Check if link already has parameters
-            const separator = href.includes('?') ? '&' : '?';
-
-            // We want to add these UTMs to the WhatsApp message or just as URL params if supported
-            // Most people use wa.me/number?text=Message
-            // To track UTMs, we can append them to the text message or just as extra params for analytics
-
-            // If it's a wa.me link, we can't really pass extra params that WhatsApp will use, 
-            // but we can track the CLICK event on our side.
-
             link.addEventListener('click', () => {
-                trackEvent('WhatsAppClick', {
+                trackEvent('ContactClick', {
                     link: href,
                     ...utms
                 });
             });
 
-            // Optionally append to the text message so the recipient sees it
-            if (href.includes('text=')) {
-                link.setAttribute('href', href + encodeURIComponent('\n\n[Track: ' + utmString + ']'));
-            } else {
-                link.setAttribute('href', href + separator + 'text=' + encodeURIComponent('Hello Hazem, I am interested in your services.\n\n[Track: ' + utmString + ']'));
+            // Optionally append to the text message so the recipient sees it (only for WhatsApp)
+            if (utmString && (href.includes('wa.me') || href.includes('whatsapp.com'))) {
+                const separator = href.includes('?') ? '&' : '?';
+                if (href.includes('text=')) {
+                    link.setAttribute('href', href + encodeURIComponent('\n\n[Track: ' + utmString + ']'));
+                } else {
+                    link.setAttribute('href', href + separator + 'text=' + encodeURIComponent('Hello Hazem, I am interested in your services.\n\n[Track: ' + utmString + ']'));
+                }
             }
         });
 
@@ -142,8 +131,12 @@
                 });
             } else if (eventName === 'CalendlyClick') {
                 window.gtag('event', 'book_appointment', { 'send_to': 'AW-18374660008' });
-            } else if (eventName === 'WhatsAppClick') {
-                window.gtag('event', 'contact', { 'send_to': 'AW-18374660008' });
+            } else if (eventName === 'ContactClick' || eventName === 'WhatsAppClick') {
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-18374660008/j-9ICJSe3eAcEKif3LlE',
+                    'value': 1.0,
+                    'currency': 'EGP'
+                });
             }
         }
 
