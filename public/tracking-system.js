@@ -65,20 +65,6 @@
                     link: href,
                     ...utms
                 });
-
-                // Optionally append UTM to WhatsApp message before navigating
-                if (utmString && (href.includes('wa.me') || href.includes('whatsapp.com'))) {
-                    // Prevent default to rewrite link, then navigate
-                    e.preventDefault();
-                    let newHref = href;
-                    const separator = href.includes('?') ? '&' : '?';
-                    if (href.includes('text=')) {
-                        newHref = href + encodeURIComponent('\n\n[Track: ' + utmString + ']');
-                    } else {
-                        newHref = href + separator + 'text=' + encodeURIComponent('Hello Hazem, I am interested in your services.\n\n[Track: ' + utmString + ']');
-                    }
-                    window.open(newHref, link.getAttribute('target') || '_self');
-                }
             } else if (href.includes('calendly.com')) {
                 trackEvent('CalendlyClick', {
                     link: href,
