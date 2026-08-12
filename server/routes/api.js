@@ -167,7 +167,7 @@ router.post('/contact',
 // ============================================
 // GENERIC FORM SUBMISSION (Replaces Formspree)
 // ============================================
-router.post('/submit-form', upload.none(), async (req, res) => {
+router.post('/submit-form', async (req, res) => {
     try {
         const payload = req.body || {};
         
