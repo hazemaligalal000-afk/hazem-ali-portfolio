@@ -140,7 +140,7 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
 
     <div class="container">
         <div class="dynamic-form-container">
-            <form id="dynamicServiceForm" action="https://formspree.io/f/mdalpolb" method="POST">
+            <form id="dynamicServiceForm" action="/api/submit-form" method="POST">
 
                 <!-- Hidden fields for dynamic data via formspree -->
                 <input type="hidden" name="_subject" value="New Service Request from Hazem Ali Galal Website">
@@ -353,7 +353,7 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                     });
 
                     // Send to Formspree for email notification as JSON
-                    const response = await fetch('https://formspree.io/f/mdalpolb', {
+                    const response = await fetch('/api/submit-form', {
                         method: 'POST',
                         body: JSON.stringify(jsonObject),
                         headers: { 

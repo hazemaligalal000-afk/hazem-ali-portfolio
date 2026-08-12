@@ -555,7 +555,7 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("WhatsApp", document.getElementById('brandWhatsApp').value);
             formData.append("Bottleneck", document.getElementById('brandBottleneck').value);
 
-            fetch('https://formspree.io/f/mdalpolb', {
+            fetch('/api/submit-form', {
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
@@ -670,7 +670,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("Email", document.getElementById('hireEmail').value);
         formData.append("WhatsApp", document.getElementById('hireWhatsApp').value);
 
-        fetch('https://formspree.io/f/mdalpolb', {
+        fetch('/api/submit-form', {
             method: 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }

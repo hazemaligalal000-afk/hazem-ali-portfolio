@@ -282,7 +282,7 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
 						formData.append("Phone", document.getElementById('phone').value);
 						formData.append("Message", document.getElementById('message').value);
 
-						fetch('https://formspree.io/f/mdalpolb', {
+						fetch('/api/submit-form', {
 							method: 'POST',
 							body: formData,
 							headers: { 'Accept': 'application/json' }
