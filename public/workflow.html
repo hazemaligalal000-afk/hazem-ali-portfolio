@@ -1,100 +1,114 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TBV3M4R5"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'GT-TBV3M4R5');
+        gtag('config', 'GT-TBV3M4R5');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منهجية العمل - Miro Board | Hazem Ali Galal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=3">
-    
+
     <style>
-    .real-emoji-wrapper {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, rgba(235, 23, 81, 0.08) 0%, rgba(194, 24, 77, 0.03) 100%);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 8px 24px rgba(235, 23, 81, 0.06), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-        border: 1px solid rgba(235, 23, 81, 0.15);
-    }
-    .expertise-icon-item:hover .real-emoji-wrapper {
-        transform: scale(1.15) translateY(-8px);
-        box-shadow: 0 16px 32px rgba(235, 23, 81, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.8);
-        background: linear-gradient(135deg, rgba(235, 23, 81, 0.12) 0%, rgba(194, 24, 77, 0.05) 100%);
-        border: 1px solid rgba(235, 23, 81, 0.3);
-    }
-    .real-emoji {
-        width: 90px;
-        height: 90px;
-        object-fit: contain;
-        filter: drop-shadow(0px 10px 12px rgba(0,0,0,0.15));
-        transition: transform 0.4s ease;
-    }
-    .expertise-icon-item:hover .real-emoji {
-        transform: rotate(-5deg) scale(1.05);
-    }
-    .inline-emoji {
-        height: 1.3em;
-        width: 1.3em;
-        vertical-align: middle;
-        margin: 0 4px;
-        filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
-    }
-    .large-inline-emoji {
-        height: 64px;
-        width: 64px;
-        vertical-align: middle;
-        filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.1));
-    }
-    /* Hide the old span if still around */
-    .expertise-icon-item span.icon { display: none; }
-</style>
+        .real-emoji-wrapper {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(235, 23, 81, 0.08) 0%, rgba(194, 24, 77, 0.03) 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px rgba(235, 23, 81, 0.06), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(235, 23, 81, 0.15);
+        }
+
+        .expertise-icon-item:hover .real-emoji-wrapper {
+            transform: scale(1.15) translateY(-8px);
+            box-shadow: 0 16px 32px rgba(235, 23, 81, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, rgba(235, 23, 81, 0.12) 0%, rgba(194, 24, 77, 0.05) 100%);
+            border: 1px solid rgba(235, 23, 81, 0.3);
+        }
+
+        .real-emoji {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            filter: drop-shadow(0px 10px 12px rgba(0, 0, 0, 0.15));
+            transition: transform 0.4s ease;
+        }
+
+        .expertise-icon-item:hover .real-emoji {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .inline-emoji {
+            height: 1.3em;
+            width: 1.3em;
+            vertical-align: middle;
+            margin: 0 4px;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .large-inline-emoji {
+            height: 64px;
+            width: 64px;
+            vertical-align: middle;
+            filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Hide the old span if still around */
+        .expertise-icon-item span.icon {
+            display: none;
+        }
+    </style>
 
 
-	<!-- Enterprise Meta CAPI & Pixel -->
-	<script src="/js/meta-capi-client.js"></script>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2066465163970971');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18374660008"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Enterprise Meta CAPI & Pixel -->
+    <script src="/js/meta-capi-client.js"></script>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2066465163970971');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18374660008"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'AW-18374660008');
-</script>
+        gtag('config', 'AW-18374660008');
+    </script>
 </head>
+
 <body>
 
 
@@ -103,7 +117,8 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
     <div class="nav-overlay" id="nav-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="topbar" id="topbar" style="position: relative; z-index: 1000; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+    <nav class="topbar" id="topbar"
+        style="position: relative; z-index: 1000; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
         <div class="container nav-inner">
             <a href="index.html" class="nav-logo"><img src="profile.png" alt="Hazem Ali Galal"></a>
             <ul class="nav-menu" id="nav-menu">
@@ -113,19 +128,27 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                 <li><a href="/Hazem Ai Portfolio/index.html" target="_blank">معرض أعمالي</a></li>
                 <li><a href="workflow.html" class="active">منهجية العمل</a></li>
                 <li><a href="contact.html" data-i18n="nav_contact">اتصل بي</a></li>
-            
-				<li class="mobile-only-cta" style="display:none; margin-top:20px;"><span class="desktop-cta-item"><a href="#" class="nav-cta hire-me-trigger" style="background:#0f172a; width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">اطلب العمل معي</a></span></li>
-				<li class="mobile-only-cta" style="display:none;"><span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta" data-i18n="btn_book_call" style="width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">احجز موعد للتواصل</a></span></li>
-			</ul>
-            <div style="display:flex;align-items:center;gap:16px;">
-				
 
-                <span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta" data-i18n="btn_book_call">احجز موعد للتواصل</a></span>
+                <li class="mobile-only-cta" style="display:none; margin-top:20px;"><span class="desktop-cta-item"><a
+                            href="#" class="nav-cta hire-me-trigger"
+                            style="background:#0f172a; width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">اطلب
+                            العمل معي</a></span></li>
+                <li class="mobile-only-cta" style="display:none;"><span class="desktop-cta-item"><a
+                            href="https://calendly.com/hazemaligalal999/45min" target="_blank" class="nav-cta"
+                            data-i18n="btn_book_call"
+                            style="width:100%; text-align:center; padding:15px; font-size:1.1rem; display:block;">احجز
+                            موعد للتواصل</a></span></li>
+            </ul>
+            <div style="display:flex;align-items:center;gap:16px;">
+
+
+                <span class="desktop-cta-item"><a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
+                        class="nav-cta" data-i18n="btn_book_call">احجز موعد للتواصل</a></span>
                 <button class="mobile-btn" id="mobile-btn" aria-label="القائمة">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <line x1="3" y1="12" x2="21" y2="12"/>
-                        <line x1="3" y1="18" x2="21" y2="18"/>
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
                     </svg>
                 </button>
             </div>
@@ -137,25 +160,35 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
 
         <!-- Animated Cursors -->
         <div class="cursor cursor-1">
-            <svg viewBox="0 0 320 512"><path d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z"/></svg>
+            <svg viewBox="0 0 320 512">
+                <path
+                    d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z" />
+            </svg>
             <div class="cursor-tag">Hazem Ali</div>
         </div>
         <div class="cursor cursor-2">
-            <svg viewBox="0 0 320 512"><path d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z"/></svg>
+            <svg viewBox="0 0 320 512">
+                <path
+                    d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z" />
+            </svg>
             <div class="cursor-tag">CEO (Client)</div>
         </div>
         <div class="cursor cursor-3">
-            <svg viewBox="0 0 320 512"><path d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z"/></svg>
+            <svg viewBox="0 0 320 512">
+                <path
+                    d="M302.189 329.126H196.105l55.831 135.993c3.889 9.428-.555 19.999-9.444 23.999l-49.165 21.427c-9.165 4-19.443-.571-23.332-9.714l-53.053-129.136-86.664 89.138C22.279 468.552 0 463.125 0 452.268V35.702C0 24.27 23.333 18.27 31.666 27.127l275.523 280.569c7.778 7.714 2.5 21.43-5 21.43z" />
+            </svg>
             <div class="cursor-tag">Media Buyer</div>
         </div>
 
         <div class="miro-header-board">
             <h1>كيف تُدار الإمبراطورية؟ <span class="native-emoji">♟️</span></h1>
-            <p style="margin-top:15px; font-weight:bold; color:#475569;">وراء كل حملة ناجحة، هندسة بيانات معقدة. اكتشف ال Workflow الخاص بي.</p>
+            <p style="margin-top:15px; font-weight:bold; color:#475569;">وراء كل حملة ناجحة، هندسة بيانات معقدة. اكتشف
+                ال Workflow الخاص بي.</p>
         </div>
 
         <div class="miro-map">
-            
+
             <!-- ROW 1 -->
             <div class="map-row" style="animation-delay: 0.1s;">
                 <!-- Frame 0 -->
@@ -166,15 +199,18 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         <div class="frame-title">0. فك الشفرة (الجلسة المجانية)</div>
                     </div>
                     <div class="frame-body">
-                        ندخل حساباتك الإعلانية معاً لمدة 45 دقيقة مجاناً وبدون مخاطرة. نشخص النزيف المالي، ونكتشف الفرص المهدرة. إذا شعرت أني لم أضف لك قيمة، ننهي المكالمة.
+                        ندخل حساباتك الإعلانية معاً لمدة 45 دقيقة مجاناً وبدون مخاطرة. نشخص النزيف المالي، ونكتشف الفرص
+                        المهدرة. إذا شعرت أني لم أضف لك قيمة، ننهي المكالمة.
                     </div>
                     <div class="sticky s-yellow s-pos-1">
-                        <span class="native-emoji">💸</span> "الجلسة دي عشان أثبتلك بالدليل القاطع على حسابك إنك بتخسر فلوس، مش مجرد كلام بيع!"
+                        <span class="native-emoji">💸</span> "الجلسة دي عشان أثبتلك بالدليل القاطع على حسابك إنك بتخسر
+                        فلوس، مش مجرد كلام بيع!"
                     </div>
                 </div>
 
                 <!-- SVG curved arrow to next frame (Desktop only) -->
-                <svg class="svg-connector" width="200" height="100" style="right: 50%; transform: translateX(50%); top: 50px;">
+                <svg class="svg-connector" width="200" height="100"
+                    style="right: 50%; transform: translateX(50%); top: 50px;">
                     <path class="svg-path" d="M 0,50 Q 100,50 200,50" />
                     <polygon class="svg-arrow" points="190,40 200,50 190,60" />
                 </svg>
@@ -186,10 +222,12 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         <div class="frame-title">1. التأهيل عبر ال Logic Forms</div>
                     </div>
                     <div class="frame-body">
-                        أعطني داتا عميلك، أعطيك مبيعات. أقوم ببناء رحلة عميل (Buyer Journey) وفورم أسئلة ذكية تفلتر العميل الجاد من المتردد بناءً على نوع ال Business الخاص بك بدقة الجراح.
+                        أعطني داتا عميلك، أعطيك مبيعات. أقوم ببناء رحلة عميل (Buyer Journey) وفورم أسئلة ذكية تفلتر
+                        العميل الجاد من المتردد بناءً على نوع ال Business الخاص بك بدقة الجراح.
                     </div>
                     <div class="sticky s-blue s-pos-2">
-                        <span class="native-emoji">🧠</span> "أسئلة الفورم بتلعب على علم النفس السلوكي للعميل، فبيحس إنك الوحيد اللي فاهمه."
+                        <span class="native-emoji">🧠</span> "أسئلة الفورم بتلعب على علم النفس السلوكي للعميل، فبيحس إنك
+                        الوحيد اللي فاهمه."
                     </div>
                 </div>
             </div>
@@ -210,14 +248,17 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         <div class="frame-title">2. التتبع وال Live Dashboard</div>
                     </div>
                     <div class="frame-body">
-                        تأسيس كامل لل Server-side Tracking، Pixel، CAPI وال Offline Conversions. أضع بين يديك Dashboard حية لتتابع مسار كل دولار يُنفق وعائده المباشر بشفافية مطلقة 100%.
+                        تأسيس كامل لل Server-side Tracking، Pixel، CAPI وال Offline Conversions. أضع بين يديك Dashboard
+                        حية لتتابع مسار كل دولار يُنفق وعائده المباشر بشفافية مطلقة 100%.
                     </div>
                     <div class="sticky s-green s-pos-4">
-                        <span class="native-emoji">📊</span> "العميل بيشوف تقرير حي 24/7.. مفيش تقارير مضروبة، الداتا مش بتكدب!"
+                        <span class="native-emoji">📊</span> "العميل بيشوف تقرير حي 24/7.. مفيش تقارير مضروبة، الداتا مش
+                        بتكدب!"
                     </div>
                 </div>
 
-                <svg class="svg-connector" width="200" height="100" style="right: 50%; transform: translateX(50%); top: 50px;">
+                <svg class="svg-connector" width="200" height="100"
+                    style="right: 50%; transform: translateX(50%); top: 50px;">
                     <path class="svg-path" d="M 200,50 Q 100,50 0,50" />
                     <polygon class="svg-arrow" points="10,40 0,50 10,60" />
                 </svg>
@@ -229,17 +270,19 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         <div class="frame-title">3. النظام الإعلاني (Omnichannel)</div>
                     </div>
                     <div class="frame-body">
-                        المبيعات لا تأتي من منصة واحدة. أبني لك إيكوسيستم: إعلانات جوجل لقطف الثمار الناضجة، تيك توك وسناب للانتشار، وميتا (فيسبوك/انستجرام) لإعادة الاستهداف الشرس.
+                        المبيعات لا تأتي من منصة واحدة. أبني لك إيكوسيستم: إعلانات جوجل لقطف الثمار الناضجة، تيك توك
+                        وسناب للانتشار، وميتا (فيسبوك/انستجرام) لإعادة الاستهداف الشرس.
                     </div>
                     <div class="sticky s-pink s-pos-3">
-                        <span class="native-emoji">🌐</span> "العميل بيفتح تيك توك يلاقيك، جوجل يلاقيك.. فبتتبني Authority عملاقة للمركز/للمتجر."
+                        <span class="native-emoji">🌐</span> "العميل بيفتح تيك توك يلاقيك، جوجل يلاقيك.. فبتتبني
+                        Authority عملاقة للمركز/للمتجر."
                     </div>
                 </div>
             </div>
 
             <!-- ROW 3 -->
             <div class="map-row" style="animation-delay: 0.5s;">
-                
+
                 <svg class="svg-connector" width="400" height="200" style="right: 0; top: -120px;">
                     <path class="svg-path" d="M 100,0 C 0,0 0,150 300,150" />
                     <polygon class="svg-arrow" points="290,140 300,150 290,160" />
@@ -252,14 +295,17 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         <div class="frame-title">4. الإطلاق والتوسع الشرس</div>
                     </div>
                     <div class="frame-body">
-                        نطلق ال A/B Testing بهدوء. بمجرد أن نصل لمعادلة الإعلان الرابح والـ ROAS المستهدف، نقوم بعملية Scaling (توسع) جنونية لمضاعفة الأرباح بقوة وسرعة دون كسر الخوارزمية.
+                        نطلق ال A/B Testing بهدوء. بمجرد أن نصل لمعادلة الإعلان الرابح والـ ROAS المستهدف، نقوم بعملية
+                        Scaling (توسع) جنونية لمضاعفة الأرباح بقوة وسرعة دون كسر الخوارزمية.
                     </div>
                     <div class="sticky s-yellow s-pos-1">
-                        <span class="native-emoji">💰</span> "التوسع مبني على الداتا، مش بنزود البادجت عشوائي.. بنضخ فلوس في الكسبان بس!"
+                        <span class="native-emoji">💰</span> "التوسع مبني على الداتا، مش بنزود البادجت عشوائي.. بنضخ
+                        فلوس في الكسبان بس!"
                     </div>
                 </div>
 
-                <svg class="svg-connector" width="200" height="100" style="right: 50%; transform: translateX(50%); top: 50px;">
+                <svg class="svg-connector" width="200" height="100"
+                    style="right: 50%; transform: translateX(50%); top: 50px;">
                     <path class="svg-path" d="M 0,50 Q 100,50 200,50" />
                     <polygon class="svg-arrow" points="190,40 200,50 190,60" />
                 </svg>
@@ -272,10 +318,12 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         <div class="frame-title">5. الضمان الذهبي والـ LTV</div>
                     </div>
                     <div class="frame-body">
-                        أهم خطوة. نضاعف قيمة العميل (LTV) ليعود للشراء. والأهم: <strong>الضمان الذهبي</strong>. إذا لم أحقق العائد المتفق عليه بالخطة، أقوم برد أتعابي الإدارية لك بالكامل بلا نقاش.
+                        أهم خطوة. نضاعف قيمة العميل (LTV) ليعود للشراء. والأهم: <strong>الضمان الذهبي</strong>. إذا لم
+                        أحقق العائد المتفق عليه بالخطة، أقوم برد أتعابي الإدارية لك بالكامل بلا نقاش.
                     </div>
                     <div class="sticky s-blue s-pos-2">
-                        <span class="native-emoji">🛶</span> "الضمان ده معناه إني في نفس القارب معاك، لو إنت مكسبتش، أنا كمان مش هكسب!"
+                        <span class="native-emoji">🛶</span> "الضمان ده معناه إني في نفس القارب معاك، لو إنت مكسبتش، أنا
+                        كمان مش هكسب!"
                     </div>
                 </div>
             </div>
@@ -283,7 +331,8 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
         </div>
 
         <div style="text-align:center; margin-top: 100px; position: relative; z-index: 50; padding: 0 20px;">
-            <a href="https://calendly.com/hazemaligalal999/45min" target="_blank" style="background: var(--red); color: white; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 100px; text-decoration: none; display: inline-block; box-shadow: 0 15px 30px rgba(235, 23, 81, 0.3); transition: transform 0.3s; animation: popIn 1s forwards; animation-delay: 1s; opacity:0;">
+            <a href="https://calendly.com/hazemaligalal999/45min" target="_blank"
+                style="background: var(--red); color: white; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 100px; text-decoration: none; display: inline-block; box-shadow: 0 15px 30px rgba(235, 23, 81, 0.3); transition: transform 0.3s; animation: popIn 1s forwards; animation-delay: 1s; opacity:0;">
                 استثمر 45 دقيقة قد تغير مسار عملك <span class="native-emoji">👇</span>
             </a>
         </div>
@@ -295,5 +344,6 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
     <script src="whatsapp-widget.js?v=4"></script>
     <script src="telegram-widget.js?v=4"></script>
 
-    </body>
+</body>
+
 </html>
