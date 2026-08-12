@@ -131,6 +131,17 @@
      * Send event to server-side tracking API
      */
     async function trackEvent(eventName, customData = {}) {
+        // Trigger Google Ads (gtag) standard conversion events
+        if (typeof window.gtag === 'function') {
+            if (eventName === 'FormSubmission') {
+                window.gtag('event', 'generate_lead', { 'send_to': 'AW-18374660008' });
+            } else if (eventName === 'CalendlyClick') {
+                window.gtag('event', 'book_appointment', { 'send_to': 'AW-18374660008' });
+            } else if (eventName === 'WhatsAppClick') {
+                window.gtag('event', 'contact', { 'send_to': 'AW-18374660008' });
+            }
+        }
+
         try {
             const response = await fetch('/api/tracking/event', {
                 method: 'POST',
