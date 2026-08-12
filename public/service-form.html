@@ -413,13 +413,7 @@
                         }
                     });
 
-                    if (!response.ok) {
-                        const err = await response.json().catch(() => ({}));
-                        console.error('Formspree rejected the submission:', err);
-                    }
-
-                    // Always proceed to success screen (Calendly / Portfolio) so client flow never breaks
-                    if (true) {
+                    if (response.ok) {
                         // Success Logic
                         form.style.display = 'none';
                         const successMsg = document.getElementById('successMessage');
