@@ -10,6 +10,8 @@ const { db } = require('../config/database');
 const logger = require('../utils/logger');
 const snapchatCAPI = require('../services/snapchat-capi');
 const nodemailer = require('nodemailer');
+const multer = require('multer');
+const upload = multer();
 
 // ============================================
 // HEALTH CHECK
@@ -165,7 +167,7 @@ router.post('/contact',
 // ============================================
 // GENERIC FORM SUBMISSION (Replaces Formspree)
 // ============================================
-router.post('/submit-form', async (req, res) => {
+router.post('/submit-form', upload.none(), async (req, res) => {
     try {
         const payload = req.body;
         

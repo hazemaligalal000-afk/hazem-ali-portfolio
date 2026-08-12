@@ -405,6 +405,11 @@ src="https://www.facebook.com/tr?id=2066465163970971&ev=PageView&noscript=1"
                         successMsg.style.display = 'block';
                         window.scrollTo({ top: 0, behavior: 'smooth' });
 
+                        // Fire Meta Pixel tracking explicitly on success
+                        if (typeof fbq === 'function') {
+                            fbq('track', 'Lead');
+                        }
+
                         if (!isUnqualified) {
                             setTimeout(() => {
                                 window.location.href = "https://calendly.com/hazemaligalal999/45min";
