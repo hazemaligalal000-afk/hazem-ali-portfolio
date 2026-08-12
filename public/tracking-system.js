@@ -52,36 +52,39 @@
         const utms = getStoredUTMs();
         const utmString = Object.keys(utms).length > 0 ? Object.entries(utms).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&') : '';
 
-        const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"], a[href*="t.me"]');
-        whatsappLinks.forEach(link => {
-            let href = link.getAttribute('href');
+        // Use event delegation to catch dynamically added widgets (e.g., from whatsapp-widget.js)
+        document.body.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (!link) return;
 
-            link.addEventListener('click', () => {
+            const href = link.getAttribute('href') || '';
+            
+            // Check for WhatsApp or Telegram
+            if (href.includes('wa.me') || href.includes('whatsapp.com') || href.includes('t.me')) {
                 trackEvent('ContactClick', {
                     link: href,
                     ...utms
                 });
-            });
 
-            // Optionally append to the text message so the recipient sees it (only for WhatsApp)
-            if (utmString && (href.includes('wa.me') || href.includes('whatsapp.com'))) {
-                const separator = href.includes('?') ? '&' : '?';
-                if (href.includes('text=')) {
-                    link.setAttribute('href', href + encodeURIComponent('\n\n[Track: ' + utmString + ']'));
-                } else {
-                    link.setAttribute('href', href + separator + 'text=' + encodeURIComponent('Hello Hazem, I am interested in your services.\n\n[Track: ' + utmString + ']'));
+                // Optionally append UTM to WhatsApp message before navigating
+                if (utmString && (href.includes('wa.me') || href.includes('whatsapp.com'))) {
+                    // Prevent default to rewrite link, then navigate
+                    e.preventDefault();
+                    let newHref = href;
+                    const separator = href.includes('?') ? '&' : '?';
+                    if (href.includes('text=')) {
+                        newHref = href + encodeURIComponent('\n\n[Track: ' + utmString + ']');
+                    } else {
+                        newHref = href + separator + 'text=' + encodeURIComponent('Hello Hazem, I am interested in your services.\n\n[Track: ' + utmString + ']');
+                    }
+                    window.open(newHref, link.getAttribute('target') || '_self');
                 }
-            }
-        });
-
-        // Track Calendly links
-        document.querySelectorAll('a[href*="calendly.com"]').forEach(link => {
-            link.addEventListener('click', () => {
+            } else if (href.includes('calendly.com')) {
                 trackEvent('CalendlyClick', {
-                    link: link.getAttribute('href'),
+                    link: href,
                     ...utms
                 });
-            });
+            }
         });
     }
 
