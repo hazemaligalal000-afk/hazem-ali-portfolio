@@ -169,7 +169,7 @@ router.post('/contact',
 // ============================================
 router.post('/submit-form', upload.none(), async (req, res) => {
     try {
-        const payload = req.body;
+        const payload = req.body || {};
         
         let htmlBody = `<h2>New Form Submission</h2><table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;">`;
         for (const [key, value] of Object.entries(payload)) {
@@ -197,11 +197,14 @@ router.post('/submit-form', upload.none(), async (req, res) => {
             html: htmlBody
         });
 
-        logger.info(`Form submission sent via email successfully to ${adminEmail}`);
+        if (typeof logger !== 'undefined' && logger.info) {
+            logger.info(`Form submission sent via email successfully to ${adminEmail}`);
+        }
         res.status(200).json({ success: true, message: 'Form submitted successfully' });
     } catch (error) {
-        logger.error('Generic form submission error (Nodemailer):', error);
-        res.status(500).json({ error: 'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.' });
+        console.error('Generic form submission error (Nodemailer):', error);
+        try { if (typeof logger !== 'undefined' && logger.error) logger.error('Generic form submission error:', error); } catch(e){}
+        res.status(500).json({ error: 'حدث خطأ أثناء الإرسال. يرجى التأكد من إعدادات الإيميل في السيرفر أو صحة البيانات.' });
     }
 });
 
