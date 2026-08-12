@@ -492,7 +492,18 @@
                     } else {
                         // Fallback in case of backend error
                         const errorRes = await response.json().catch(() => ({}));
-                        const errMsg = errorRes.error ? "خطأ من Formspree: " + errorRes.error : "عذراً، حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى لاحقاً.";
+                        let errorDetail = errorRes.error || errorRes.message || errorRes.errors || "عذراً، حدث خطأ أثناء إرسال البيانات.";
+                        if (typeof errorDetail === 'object') {
+                            try {
+                                errorDetail = JSON.stringify(errorDetail);
+                            } catch (e) {
+                                errorDetail = "حدث خطأ غير معروف.";
+                            }
+                        }
+                        
+                        const errMsg = typeof errorDetail === 'string' && errorDetail.includes('عذراً') 
+                            ? errorDetail 
+                            : "خطأ في الإرسال: " + errorDetail + " (يرجى مراجعة إعدادات الإيميل في السيرفر)";
 
                         const errorDiv = document.createElement('div');
                         errorDiv.style.cssText = "background: #fee2e2; color: #b91c1c; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; border: 1px solid #f87171;";
