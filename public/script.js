@@ -248,6 +248,7 @@ document.addEventListener('click', function(e) {
                 'click_url': link.href
             });
             console.log('Tracked: whatsapp_click');
+            if (window.trackDualEvent) window.trackDualEvent('WhatsAppClick', { link_url: link.href });
         } else if (link.href.includes('calendly.com')) {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
@@ -255,6 +256,7 @@ document.addEventListener('click', function(e) {
                 'click_url': link.href
             });
             console.log('Tracked: calendly_click');
+            if (window.trackDualEvent) window.trackDualEvent('CalendlyClick', { link_url: link.href });
         }
     }
 });
